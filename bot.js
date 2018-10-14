@@ -1674,58 +1674,6 @@ function shuffle(queue) {
 	return queue;
 }
 
-client.on("message", message => {
-	var command = message.content.toLowerCase().split(" ")[0];
-   	var djRole = message.member.roles.has('name', 'Dj');
-        if(!djRole) return;
-        if(command == prefix + 'help') {
-     let embed = new Discord.RichEmbed()
-         .setColor("36393f")
-         .setDescription(`**
-         [Commands Help.]
-${prefix}play [NameMusic/Ulr] -> لتشغيل الاغاني , واذا لم تعمل انتظر قائمة التشغيل
-${prefix}skip ->  يتخطى الأغنية الحالية
-${prefix}playlist ->  يعرض قائمة التشغيل الحالية
-${prefix}repeat ->  يكرر تشغيل الاغنية من جديد
-${prefix}yt [search term] ->  يبحث في YouTube ويعرض أول 5 نتائج
-${prefix}add -> يضيف أغنية من بحث YouTube إلى قائمة التشغيل
-${prefix}vol ->  يحدد حجم الموسيقى إلى نسبة معينة
-${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت المتاحة
-**`)
-   message.channel.send({embed});
-
-   }
-   });
-
-
-client.on('message', message => {
-	var djRole = message.member.roles.has('name', 'Dj');
-	if(!djRole) return;
-	var command = message.content.toLowerCase().split(" ")[0];
-	
-	if(command == prefix + 'help') {
-		let embed = new Discord.RichEmbed()
-         .setColor("36393f")
-         .setDescription(`**
-         [Commands Help.]
-${prefix}play [NameMusic/Ulr] -> لتشغيل الاغاني , واذا لم تعمل انتظر قائمة التشغيل
-${prefix}skip ->  يتخطى الأغنية الحالية
-${prefix}playlist ->  يعرض قائمة التشغيل الحالية
-${prefix}playlist remove [song number] ->  يزيل الأغنية المختارة من قائمة التشغيل (Dj)
-${prefix}playlist clear ->  يزيل كل الأغاني من قائمة التشغيل (Dj)
-${prefix}playlist shuffle ->  يغير قائمة التشغيل الحالية (Dj)
-${prefix}repeat ->  يكرر تشغيل الاغنية من جديد
-${prefix}stop ->  يتوقف عن تشغيل الموسيقى ويحذف جميع الأغاني في قائمة التشغيل (Dj)
-${prefix}}yt [search term] ->  يبحث في YouTube ويعرض أول 5 نتائج
-${prefix}add -> يضيف أغنية من بحث YouTube إلى قائمة التشغيل
-${prefix}vol ->  يحدد حجم الموسيقى إلى نسبة معينة
-${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت المتاحة
-**`)
-   message.channel.send({embed});
-
-   }
-   });
-   
    
       client.on("message", message => {
     if (message.content.toLowerCase() === prefix + "help") {
@@ -1740,14 +1688,12 @@ ${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت �
          .setURL('')
          .setDescription(`
  **
-╭━━━┳╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮
-┃╭━╮┃┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮
-┃╰━╯┃┃╭━━┳╮╱╭┫╰╯╰┳━┻╮╭╋━━╮
-┃╭━━┫┃┃╭╮┃┃╱┃┃╭━╮┃╭╮┃┃┃━━┫
-┃┃╱╱┃╰┫╭╮┃╰━╯┃╰━╯┃╰╯┃╰╋━━┃
-╰╯╱╱╰━┻╯╰┻━╮╭┻━━━┻━━┻━┻━━╯
-╱╱╱╱╱╱╱╱╱╭━╯┃
-╱╱╱╱╱╱╱╱╱╰━━╯
+╭━━━╮╱╱╱╱╱╱╭╮╱╭━━━┳╮
+┃╭━╮┃╱╱╱╱╱╭╯╰╮┃╭━╮┃┃
+┃┃╱╰╋━━┳┳━╋╮╭╯┃╰━╯┃┃╭╮╭┳━━╮
+┃┃╭━┫╭╮┣┫╭╮┫┃╱┃╭━━┫┃┃┃┃┃━━┫
+┃╰┻━┃╭╮┃┃┃┃┃╰╮┃┃╱╱┃╰┫╰╯┣━━┃
+╰━━━┻╯╰┻┻╯╰┻━╯╰╯╱╱╰━┻━━┻━━╯
 
 
 
