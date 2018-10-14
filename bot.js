@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({disableEveryone: true, maxMessagesCache: 1});
 const prefix = '#';
 const axios = require('axios');
 const fs = require('fs');
@@ -8,6 +8,9 @@ const path = require('path');
 const moment = require('moment');
 const yt = require('ytdl-core');
 const request = require('request');
+const config = require('./Configuration.json');
+const tpoints = JSON.parse(fs.readFileSync('./Text.json', 'UTF8'));
+const vpoints = JSON.parse(fs.readFileSync('./Voice.json', 'UTF8'));
 const devs = ['202745501345382400', '461766920400535552', '202745501345382400', '461766920400535552', '202745501345382400', '202745501345382400'];
 
 var cooldownGames = new Set();
@@ -1819,10 +1822,6 @@ if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
 }); // ! clientHema ★#6090
  // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
-const client = new Discord.Client({disableEveryone: true, maxMessagesCache: 1});
-const config = require('./Configuration.json');
-const tpoints = JSON.parse(fs.readFileSync('./Text.json', 'UTF8'));
-const vpoints = JSON.parse(fs.readFileSync('./Voice.json', 'UTF8'));
 client.config = config;
 client.login(process.env.BOT_TOKEN);
 client.on('ready',async () => {
