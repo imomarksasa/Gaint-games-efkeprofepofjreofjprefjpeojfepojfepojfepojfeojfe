@@ -1769,7 +1769,7 @@ ${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت �
 
 #فكك | #spelling
 
-#اسرع كتابة | #fasttyping
+#اسرع | #fast
 
 #عواصم | #captials ( قريبا | Comming Soon )
 
@@ -1786,6 +1786,8 @@ ${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت �
 #اعكس | #reverse  ( قريبا | Comming Soon )
 
 #احسب | #maths
+
+#برامج | #applications
 
 سيرفر الرئيسي | Offical Server [ discord.gg/uwBeCgc ]
 
