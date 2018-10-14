@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({disableEveryone: true, maxMessagesCache: 1});
+const client = new Discord.Client();
 const prefix = '#';
 const axios = require('axios');
 const fs = require('fs');
