@@ -1101,7 +1101,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			})
 		})
 	}
-	if(command == prefix + 'رياضيات') {
+	if(command == prefix + 'احسب') {
 		let type = require('./qmath.json');
 		let item = type[Math.floor(Math.random() * type.length)];
 		let filter = response => {
