@@ -53,7 +53,7 @@ client.on('ready', () => {
   console.log('')
   console.log('')
   console.log('')
-  client.user.setActivity('#help')
+  client.user.setActivity('#help | #مساعدة')
 });
 
 client.on('message', message => {
@@ -1871,4 +1871,4 @@ if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
 }); // ! clientHema ★#6090
  // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
-client.login("NDk5OTgxODA0NzgzMjcxOTM4.DqJTMA.qY9Z8L04KrTENNKbsNsKcx7BT3g");
+client.login(process.env.BOT_TOKEN);
