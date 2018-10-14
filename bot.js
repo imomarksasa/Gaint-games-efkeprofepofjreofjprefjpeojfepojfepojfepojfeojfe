@@ -53,7 +53,7 @@ client.on('ready', () => {
   console.log('')
   console.log('')
   console.log('')
-  client.user.setActivity('#help | #inv')
+  client.user.setActivity('#help')
 });
 
 client.on('message', message => {
@@ -176,7 +176,7 @@ client.on('message', message => {
   let warnEmbed = new Discord.RichEmbed()
   .setTitle(':no_entry_sign: **[WARN]**')
   .setThumbnail(client.user.avatarURL)
-  .setColor('GRAY')
+  .setColor('#36393e')
   .addField('User:', `<@${wUser.id}>`, true)
   .addField('By:', `<@${message.author.id}>`, true)
   .addField('Reason:', `**➥** [ **${reason}** ]`, true)
@@ -545,7 +545,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
         embed: new Discord.RichEmbed()
             .setTitle(`:page_with_curl: [**__${client.user.username}#${client.user.discriminator}__**] **معلومات عن بوت**`)
             .setThumbnail(client.user.avatarURL)
-            .setColor('GRAY')
+            .setColor('#36393e')
             .addField(':white_check_mark: **__البنق__**', `**➥** [ **${client.pings[0]}ms** ]`, true)
             .addField(':white_check_mark: **__الذاكرة المستخدمة__**', `**➥** [ **${(process.memoryUsage().rss / 1048576).toFixed()}MB** ]`, true)
 			.addField(':white_check_mark: **__مطور البوت__**', `**➥** [ <@${client.users.get('346629187504832513').id}> ]`, true)
@@ -592,7 +592,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 	  .addField(`:bust_in_silhouette: **__Last Member__**`, `**➥** [ ${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `<@!${m.id}>`).splice(0, 1)} ]`, true)
 	  .setFooter(`This Bot was Developed For [${message.guild.name}]`, client.user.avatarURL)
 	  .setTimestamp()
-	  .setColor('GRAY')
+	  .setColor('#36393e')
 	  .setThumbnail(client.user.avatarURL)
 	  message.channel.send(server)
      })
@@ -627,7 +627,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 						var w = 'Member';
 					}
 					let idPlayer = new Discord.RichEmbed()
-					.setColor('GRAY')
+					.setColor('#36393e')
 					.addField(':bust_in_silhouette: **__الاسم:__**', `**➥** [ <@${z.id}> ]`, true)
 					.addField(':id: **__الايدي:__**', `**${z.id}**`, true)
 					.addField(':video_game: **__يلعب:__**', `**➥** [ ${y} ]`, true)
@@ -651,7 +651,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		if(!args1) return;
 	var say = new Discord.RichEmbed()
 	.setDescription(`**${args1}**`)
-	.setColor('GRAY')
+	.setColor('#36393e')
 	message.channel.send(say);
 	message.delete();
 	};
@@ -686,7 +686,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			}
 			
 			var avatarImage = new Discord.RichEmbed()
-			.setColor('GRAY')
+			.setColor('#36393e')
 			.setTitle(`:white_check_mark: <@${msg1.id}>'s **Avatar:**`)
 			.setImage(`${msg1.avatarURL}`)
 			.setTimestamp()
@@ -722,7 +722,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
       .setTitle(`:white_check_mark: **كود البحث عن الاعضاء بواسطة الاسم**`)
       .setThumbnail(client.user.avatarURL)
       .setDescription(`**\n➥ البحث عن الاعضاء الموجود بداخل اسمائهم:**\n " ${args1} "\n\n**➥ عدد الاعضاء:**\n " ${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n') || 'لا يوجد اعضاء بهذه الاحرف'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
-      .setColor('GRAY')
+      .setColor('#36393e')
       .setTimestamp()
       .setFooter(message.author.tag, message.author.avatarURL)
 
@@ -747,7 +747,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
       .setTitle(`:white_check_mark: **كود البحث عن الاعضاء بواسطة التاق**`)
       .setThumbnail(client.user.avatarURL)
       .setDescription(`**\n➥ البحث عن الاعضاء الذين لديهم التاق التالي:**\n " #${tagPlayer} "\n\n**➥ عدد الاعضاء:**\n " ${client.users.filter(m=>m.discriminator == tagPlayer).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${client.users.filter(m=>m.discriminator == tagPlayer).map(m=>size++ + '. ' + m.tag).slice(0,20).join('\n') || ' لا يوجد اعضاء بهذه الارقام'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
-      .setColor('GRAY')
+      .setColor('#36393e')
       .setTimestamp()
       .setFooter(message.author.tag, message.author.avatarURL)
 
@@ -764,7 +764,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		let bcSure = new Discord.RichEmbed()
 		.setTitle(`:mailbox_with_mail: **هل انت متأكد انك تريد ارسال هذه الرسالة الى** ${message.guild.memberCount} **عضو؟**`)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setDescription(`**\n:envelope: ➥ الرسالة**\n\n${args1}`)
 		.setTimestamp()
 		.setFooter(message.author.tag, message.author.avatarURL)
@@ -852,7 +852,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			.addField('**الدعوات**', `**➥** [ شخص **${Number(inviteCount)}** ]`)
 			.addField('**تم الانضمام للسيرفر من**', `**➥** [ يوم **${daysJoined.toFixed(0)}** ]`)
 			.addField('**رابط دعوة الانضمام**', `**➥** [ **https://discord.gg/${inviteCode || 'Zm2U6we'}** ]`)
-			.setColor('GRAY')
+			.setColor('#36393e')
 			.setTimestamp()
 			.setFooter(Tag, Avatar)
 			
@@ -869,7 +869,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		let voiceOnline = new Discord.RichEmbed()
 		.setTitle(':white_check_mark: **امر الفويس اونلاين**')
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setDescription(`**\n➥ عدد المتواجدين صوت**\n" ${message.guild.members.filter(member => member.voiceChannel).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.voiceChannel).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n')}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
 		.setTimestamp()
 		.setFooter(message.author.tag, message.author.avatarURL)
@@ -910,7 +910,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setTitle('')
 		.setDescription(`اسرع واحد يقوم بحل اللغز التالي:\n\n➥ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -952,7 +952,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setTitle('')
 		.setDescription(`اسرع واحد يقوم بتفكيك الجملة التالية:\n➥ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -994,7 +994,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setTitle('')
 		.setDescription(`اسرع واحد يكتب الجملة التالية:\n\n➥ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -1037,7 +1037,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setDescription(`اسرع واحد يقوم بكتابة اسم الايموجي التالي:`)
 		.setImage(item.type)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -1080,7 +1080,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setDescription(`اسرع واحد يقوم بكتابة اسم العلم التالي:`)
 		.setImage(item.type)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -1101,7 +1101,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			})
 		})
 	}
-	if(command == prefix + 'احسب') {
+	if(command == prefix + 'رياضيات') {
 		let type = require('./qmath.json');
 		let item = type[Math.floor(Math.random() * type.length)];
 		let filter = response => {
@@ -1122,7 +1122,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setTitle('')
 		.setDescription(`اسرع واحد يحسب المعادلة التالية:\n\n➥ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTimestamp()
 		.setFooter(``)
 		
@@ -1186,7 +1186,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		
 		let pointsPlayer = new Discord.RichEmbed()
 		.setThumbnail(client.user.avatarURL)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setTitle(`**\n:heavy_plus_sign: [ مجموع النقاط [ ${allPoints}\n**`)
 		.addField('**نقاط لعبة الالغاز:**', `➥ [ **${lazPoints}** ]`, true)
 		.addField('**نقاط لعبة فكك:**', `➥ [ **${fkkPoints}** ]`, true)
@@ -1219,7 +1219,7 @@ client.on('message', message => {
 		
 		var sugDone = new Discord.RichEmbed()
 		.setTitle(`**تم ارسال اقتراحك بنجاح ! شكرا على اقتراحك**`)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setThumbnail(client.user.avatarURL)
 		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}`)
 		.setTimestamp()
@@ -1231,7 +1231,7 @@ client.on('message', message => {
 		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}\n\n:white_check_mark: للارسال\n\n:negative_squared_cross_mark: للالغاء`)
 		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 		.setTimestamp()
-		.setColor('GRAY')
+		.setColor('#36393e')
 		message.channel.send(sugSure).then(msg => {
 			msg.react('✅').then(() => msg.react('❎'))
 
@@ -1250,7 +1250,7 @@ Yes.on("collect", r => {
 	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 	.setTimestamp()
 	.setThumbnail(client.user.avatarURL)
-	.setColor('GRAY')
+	.setColor('#36393e')
 	channel.send(newsug).then(message => {
 		message.react('👍').then(() => message.react('👎'))
 	})
@@ -1281,7 +1281,7 @@ client.on('message', message => {
 		
 		var done = new Discord.RichEmbed()
 		.setDescription(`**تم ارسال تقديمك بنجاح !**\n\n**➥ اسمك بماين كرافت**\n[ ${mc} ]`)
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setThumbnail(client.user.avatarURL)
 		.setTimestamp()
 		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL);
@@ -1328,7 +1328,7 @@ client.on('messageDelete', message => {
 	var MsgDelete = new Discord.RichEmbed()
 	.setTitle(`:wastebasket: **[MESSAGE DELETE]**`)
 	.setThumbnail(client.user.avatarURL)
-	.setColor('GRAY')
+	.setColor('#36393e')
 	.setDescription(`**\n➥ الاسم:**\n<@${message.author.id}>\n\n**➥ الرسالة التي تم مسحها:**\n\`\`\`${message}\`\`\`\n**➥ في روم:**\n${message.channel}`)
 	.setTimestamp()
 	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
@@ -1342,7 +1342,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 	const MsgEdit = new Discord.RichEmbed()
 	.setTitle(`:gear: **[MESSAGE EDIT]**`)
 	.setThumbnail(client.user.avatarURL)
-	.setColor('GRAY')
+	.setColor('#36393e')
 	.setDescription(`**\n➥ الاسم:**\n<@${newMessage.author.id}>\n\n**➥ قبل التعديل:**\n\`\`\`${oldMessage}\`\`\`\n**➥ بعد التعديل:**\n\`\`\`${newMessage}\`\`\`\n**➥ في روم:**\n${newMessage.channel}`)
 	.setTimestamp()
 	.setFooter(`${newMessage.author.username}#${newMessage.author.discriminator}`, newMessage.author.avatarURL)
@@ -1361,7 +1361,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 		 .setTitle(':white_check_mark: **[ROLE CREATE]**')
 		 .setThumbnail(client.user.avatarURL)
 		 .setDescription(`**\n➥ اسم الرتبة:**\n\`\`${rc.name}\`\`\n\n**➥ بواسطة:**\n<@${user}>`)
-		 .setColor('GRAY')
+		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${rc.guild.name} ]`, client.user.avatarURL)
 		 
@@ -1379,7 +1379,7 @@ client.on("roleDelete", rd => {
 		 .setTitle(':negative_squared_cross_mark: **[ROLE DELETE]**')
 		 .setThumbnail(client.user.avatarURL)
 		 .setDescription(`**\n➥ اسم الرتبة:**\n\`\`${rd.name}\`\`\n\n**➥ بواسطة:**\n<@${user}>`)
-		 .setColor('GRAY')
+		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${rd.guild.name} ]`, client.user.avatarURL)
 		 
@@ -1399,7 +1399,7 @@ client.on('channelCreate', cc => {
 		 .setTitle(':white_check_mark: **[CHANNEL CREATE]**')
 		 .setThumbnail(client.user.avatarURL)
 		 .setDescription(`**\n➥ اسم الروم:**\n<#${cc.id}>\n\n**➥ بواسطة:**\n<@${user}>`)
-		 .setColor('GRAY')
+		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${cc.guild.name} ]`, client.user.avatarURL)
 		 
@@ -1417,7 +1417,7 @@ client.on('channelDelete', dc => {
 		 .setTitle(':negative_squared_cross_mark: **[CHANNEL DELETE]**')
 		 .setThumbnail(client.user.avatarURL)
 		 .setDescription(`**\n➥ اسم الروم:**\n#${dc.name}\n\n**➥ بواسطة:**\n<@${user}>`)
-		 .setColor('GRAY')
+		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${dc.guild.name} ]`, client.user.avatarURL)
 		 
@@ -1494,7 +1494,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
        .addField('User', voiceNew, true)
        .addField('By', `<@${user}>`, true)
        .setThumbnail(client.user.avatarURL)
-       .setColor('GRAY')
+       .setColor('#36393e')
        .setTimestamp()
        .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
 
@@ -1506,7 +1506,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
        .addField('User', voiceNew, true)
        .addField('By', `<@${user}>`, true)
        .setThumbnail(client.user.avatarURL)
-       .setColor('GRAY')
+       .setColor('#36393e')
        .setTimestamp()
        .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
 
@@ -1518,7 +1518,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
        .addField('User', voiceNew, true)
        .addField('By', `<@${user}>`, true)
        .setThumbnail(client.user.avatarURL)
-       .setColor('GRAY')
+       .setColor('#36393e')
        .setTimestamp()
        .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
 
@@ -1530,7 +1530,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
        .addField('User', voiceNew, true)
        .addField('By', `<@${user}>`, true)
        .setThumbnail(client.user.avatarURL)
-       .setColor('GRAY')
+       .setColor('#36393e')
        .setTimestamp()
        .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
 
@@ -1575,7 +1575,7 @@ function playMusic(id, message) {
 	if(!voiceChannel) {
 		let notVoiceChannel = new Discord.RichEmbed()
 		.setTitle(':name_badge: **Error**')
-		.setColor('GRAY')
+		.setColor('#36393e')
 		.setThumbnail(client.user.avatarURL)
 		.setDescription('**\nلازم تكون بروم صوتي**')
 		.setTimestamp()
@@ -1673,6 +1673,59 @@ function shuffle(queue) {
 	}
 	return queue;
 }
+
+client.on("message", message => {
+	var command = message.content.toLowerCase().split(" ")[0];
+   	var djRole = message.member.roles.has('name', 'Dj');
+        if(!djRole) return;
+        if(command == prefix + 'help') {
+     let embed = new Discord.RichEmbed()
+         .setColor("36393f")
+         .setDescription(`**
+         [Commands Help.]
+${prefix}play [NameMusic/Ulr] -> لتشغيل الاغاني , واذا لم تعمل انتظر قائمة التشغيل
+${prefix}skip ->  يتخطى الأغنية الحالية
+${prefix}playlist ->  يعرض قائمة التشغيل الحالية
+${prefix}repeat ->  يكرر تشغيل الاغنية من جديد
+${prefix}yt [search term] ->  يبحث في YouTube ويعرض أول 5 نتائج
+${prefix}add -> يضيف أغنية من بحث YouTube إلى قائمة التشغيل
+${prefix}vol ->  يحدد حجم الموسيقى إلى نسبة معينة
+${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت المتاحة
+**`)
+   message.channel.send({embed});
+
+   }
+   });
+
+
+client.on('message', message => {
+	var djRole = message.member.roles.has('name', 'Dj');
+	if(!djRole) return;
+	var command = message.content.toLowerCase().split(" ")[0];
+	
+	if(command == prefix + 'help') {
+		let embed = new Discord.RichEmbed()
+         .setColor("36393f")
+         .setDescription(`**
+         [Commands Help.]
+${prefix}play [NameMusic/Ulr] -> لتشغيل الاغاني , واذا لم تعمل انتظر قائمة التشغيل
+${prefix}skip ->  يتخطى الأغنية الحالية
+${prefix}playlist ->  يعرض قائمة التشغيل الحالية
+${prefix}playlist remove [song number] ->  يزيل الأغنية المختارة من قائمة التشغيل (Dj)
+${prefix}playlist clear ->  يزيل كل الأغاني من قائمة التشغيل (Dj)
+${prefix}playlist shuffle ->  يغير قائمة التشغيل الحالية (Dj)
+${prefix}repeat ->  يكرر تشغيل الاغنية من جديد
+${prefix}stop ->  يتوقف عن تشغيل الموسيقى ويحذف جميع الأغاني في قائمة التشغيل (Dj)
+${prefix}}yt [search term] ->  يبحث في YouTube ويعرض أول 5 نتائج
+${prefix}add -> يضيف أغنية من بحث YouTube إلى قائمة التشغيل
+${prefix}vol ->  يحدد حجم الموسيقى إلى نسبة معينة
+${prefix}help or ${prefix}commands ->  يعرض لك الاوامر البوت المتاحة
+**`)
+   message.channel.send({embed});
+
+   }
+   });
+   
    
       client.on("message", message => {
     if (message.content.toLowerCase() === prefix + "help") {
