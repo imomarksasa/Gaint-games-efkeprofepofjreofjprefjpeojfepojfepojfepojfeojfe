@@ -53,7 +53,7 @@ client.on('ready', () => {
   console.log('')
   console.log('')
   console.log('')
-  client.user.setActivity('#help | #مساعدة')
+  client.user.setActivity('#help | #inv')
 });
 
 client.on('message', message => {
