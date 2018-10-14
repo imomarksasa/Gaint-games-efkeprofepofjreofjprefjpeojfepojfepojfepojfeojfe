@@ -1858,7 +1858,7 @@ client.on('message',async message => {
  
     let topRoyale = new Discord.RichEmbed();
     topRoyale.setAuthor(message.author.username, message.author.avatarURL);
-    topRoyale.setTitle('# " Top');
+    topRoyale.setTitle('# "📋 Guild Score Leaderboards');
     //topRoyale.setThumbnail(message.guild.iconURL);
     topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText, true);
     topRoyale.addField(`**TOP 5 VOICE 🎙**`, _voiceText, true);
