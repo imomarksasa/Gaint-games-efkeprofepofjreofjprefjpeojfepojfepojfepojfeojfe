@@ -1,54 +1,54 @@
 [
     {
 	
-	        "image": ".app/Logos/amazon.jpg",
+	        "image": "./Logos/amazon.jpg",
         "answers": ["امازون"]
     },
     {
 
-	        "image": ".app/Logos/discord.jpg",
+	        "image": "./Logos/discord.jpg",
 
         "answers": ["دسكورد"]
     },
     {
 
-	        "image": ".app/Logos/facebook.jpg",
+	        "image": "./Logos/facebook.jpg",
 
         "answers": ["فيس بوك"]
     },
     {
 
-	        "image": ".app/Logos/gmail.jpg",
+	        "image": "./Logos/gmail.jpg",
 
         "answers": ["جميل"]
     },
     {
 
-	        "image": ".app/Logos/instagram.jpg",
+	        "image": "./Logos/instagram.jpg",
 
         "answers": ["انستا قرام"]
     },
     {
 
-	        "Logos": ".app/Logos/itunes.jpg",
+	        "Logos": "./Logos/itunes.jpg",
 
         "answers": ["اي تونز"]
     },
     {
 
-	        "image": ".app/Logos/netflix.jpg",
+	        "image": "./Logos/netflix.jpg",
 
         "answers": ["نت فلكس"]
     },
     {
 
-	        "image": ".app/Logos/paypal.jpg",
+	        "image": "./Logos/paypal.jpg",
 
         "answers": ["باي بال"]
     },
     {
 
-	        "image": ".app/Logos/snapchat.jpg",
+	        "image": "./Logos/snapchat.jpg",
 
         "answers": ["سناب شات"]
     },
@@ -57,7 +57,7 @@
 	
 
 
-	        "image": ".app/Logos/spotify.jpg",
+	        "image": "./Logos/spotify.jpg",
 
         "answers": ["سبوتفي"]
     },
@@ -66,7 +66,7 @@
 
 
 
-	        "image": ".app/Logos/steam.jpg",
+	        "image": "./Logos/steam.jpg",
 
         "answers": ["ستيم"]
     },
@@ -75,7 +75,7 @@
 
 
 
-	        "image": ".app/Logos/tumblr.jpg",
+	        "image": "./Logos/tumblr.jpg",
 
         "answers": ["تمبلر"]
     },
@@ -84,7 +84,7 @@
 
 
 
-	        "image": ".app/Logos/twitter.jpg",
+	        "image": "./Logos/twitter.jpg",
 
         "answers": ["تويتر"]
     },
@@ -93,7 +93,7 @@
 
 
 
-	        "image": ".app/Logos/youtube.jpg",
+	        "image": "./Logos/youtube.jpg",
 
         "answers": ["يوتيوب"]
     },
