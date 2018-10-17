@@ -1623,4 +1623,66 @@ if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
 }); // ! clientHema ★#6090
  // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
+	if(command == prefix + 'points') {
+		if(!games[message.author.id]) games[message.author.id] = {
+			laz: 0,
+			fkk: 0,
+			fast: 0,
+			emoji: 0,
+			flag: 0,
+			math: 0,
+		};
+		
+		if(args1 == '') {
+			var lazPoints = games[message.author.id].laz;
+			var fkkPoints = games[message.author.id].fkk;
+			var fastPoints = games[message.author.id].fast;
+			var emojiPoints = games[message.author.id].emoji;
+			var flagPoints = games[message.author.id].flag;
+			var mathPoints = games[message.author.id].math;
+			var allPoints = lazPoints + fkkPoints + fastPoints + emojiPoints + flagPoints + mathPoints;
+			var playerName = message.author.tag;
+			var playerAvatar = message.author.avatarURL;
+		}else {
+			if(!games[muf.id]) games[muf.id] = {
+				laz: 0,
+				fkk: 0,
+				fast: 0,
+				emoji: 0,
+				flag: 0,
+				math: 0,
+			};
+			
+			var lazPoints = games[muf.id].laz;
+			var fkkPoints = games[muf.id].fkk;
+			var fastPoints = games[muf.id].fast;
+			var emojiPoints = games[muf.id].emoji;
+			var flagPoints = games[muf.id].flag;
+			var mathPoints = games[muf.id].math;
+			var allPoints = lazPoints + fkkPoints + fastPoints + emojiPoints + flagPoints + mathPoints;
+			var playerName = muf.tag;
+			var playerAvatar = muf.avatarURL;
+		}
+		
+		let pointsPlayer = new Discord.RichEmbed()
+		.setThumbnail(client.user.avatarURL)
+		.setColor('#36393e')
+		.setTitle(`**\n:crown: [ مجموع النقاط [ ${allPoints}\n**`)
+		.addField('**Your Points in puzzle:**', ` ↝ [ **${lazPoints}** ] ↜`, true)
+		.addField('**Your Points in spelling:**', ` ↝ [ **${fkkPoints}** ] ↜`, true)
+		.addField('**Your Points in fasttyping:**', ` ↝ [ **${fastPoints}** ] ↜`, true)
+		.addField('**Your Points in emoji:**', ` ↝ [ **${emojiPoints}** ] ↜`, true)
+		.addField('**Your Points in flags:**', ` ↝ [ **${flagPoints}** ] ↜`, true)
+		.addField('**Your Points in maths:**', ` ↝ [ **${mathPoints}** ] ↜`, true)
+		.setTimestamp()
+		.setFooter(playerName, playerAvatar)
+		
+		message.channel.send(pointsPlayer);
+		
+		fs.writeFile("./games/games.json", JSON.stringify(games), (err) => {
+			if(err) console.error(err)
+		});
+	};
+});
+
 client.login("NDk5OTgxODA0NzgzMjcxOTM4.DqJTMA.qY9Z8L04KrTENNKbsNsKcx7BT3g");
