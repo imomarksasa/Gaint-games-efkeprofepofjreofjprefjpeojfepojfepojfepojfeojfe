@@ -1606,7 +1606,6 @@ msg.channel.sendFile(`${item.image}`).then(() => { // ! clientHema ★#6090
     }) // ! clientHema ★#6090
 } // ! clientHema ★#6090
 }); // ! clientHema ★#6090
- // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
 	if(command == prefix + 'points') {
 		if(!games[message.author.id]) games[message.author.id] = {
