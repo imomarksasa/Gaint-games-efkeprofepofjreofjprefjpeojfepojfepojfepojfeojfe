@@ -1607,21 +1607,6 @@ msg.channel.sendFile(`${item.image}`).then(() => { // ! clientHema ★#6090
 } // ! clientHema ★#6090
 }); // ! clientHema ★#6090
  // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
-client.on('message', message => { // ! clientHema ★#6090
-if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
-    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); // ! clientHema ★#6090
-    let userData = points[message.author.id]; // ! clientHema ★#6090
-    let embed = new Discord.RichEmbed() // ! clientHema ★#6090
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL) // ! clientHema ★#6090
-    .setColor('#000000') // ! clientHema ★#6090
-    .setDescription(`نقاطك: \`${userData.points}\``) // ! clientHema ★#6090
-    message.channel.sendEmbed(embed) // ! clientHema ★#6090
-  } // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
-  fs.writeFile("./PL/plPTS.json", JSON.stringify(points), (err) => { // ! clientHema ★#6090
-    if (err) console.error(err) // ! clientHema ★#6090
-  }) // ! clientHema ★#6090
-}); // ! clientHema ★#6090
- // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
 	if(command == prefix + 'points') {
 		if(!games[message.author.id]) games[message.author.id] = {
@@ -1685,4 +1670,59 @@ if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
 	};
 });
 
-client.login("NDk5OTgxODA0NzgzMjcxOTM4.DqJTMA.qY9Z8L04KrTENNKbsNsKcx7BT3g");
+const tpoints = {};
+const vpoints = {};
+client.on('ready',async () => {
+  console.log(`.📋 Guild Score Leaderboards`);
+  client.users.forEach(m => {
+    if(m.bot) return;
+    if(!tpoints[m.id]) tpoints[m.id] = {points: 0, id: m.id};
+
+    if(!vpoints[m.id]) vpoints[m.id] = {points: 0, id: m.id};
+  });
+});
+
+client.on('message',async message => {
+  if(message.author.bot || message.channel.type === 'dm') return;
+  let args = message.content.split(' ');
+  let member = message.member;
+  let mention = message.mentions.users.first();
+  let guild = message.guild;
+  let author = message.author;
+
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
+  tpoints[author.id].points += rPoints;
+  if(args[0] === `${hero.config.prefix}top`) {
+    let _voicePointer = 1;
+    let _textPointer = 1;
+    let _voiceArray = Object.values(vpoints);
+    let _textArray = Object.values(tpoints);
+    let _topText = _textArray.slice(0, 5).map(r => `**\`.${_textPointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
+    let _voiceText = _voiceArray.slice(0, 5).map(r => `**\`.${_voicePointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
+
+    let topRoyale = new Discord.RichEmbed();
+    topRoyale.setAuthor(message.author.username, message.author.avatarURL);
+    topRoyale.setTitle('# " Top');
+    //topRoyale.setThumbnail(message.guild.iconURL);
+    topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText, true);
+    topRoyale.addField(`**TOP 5 VOICE 🎙**`, _voiceText, true);
+    topRoyale.setFooter(playerName, playerAvatar)
+    message.channel.send(topRoyale).catch(e => {
+      if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
+    });
+  }
+});
+
+hero.on('voiceStateUpdate', (u, member) => {
+  let author = member.user.id;
+  let guild = member.guild;
+  if(member.voiceChannel === null) return;
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
+  setInterval(() => {
+    if(!member.voiceChannel) return;
+    if(member.selfDeafen) return;
+    vpoints[author].points += rPoints;
+  }, 5000); // 5 Secs
+});
+
+client.login(process.env.BOT_TOKEN);
