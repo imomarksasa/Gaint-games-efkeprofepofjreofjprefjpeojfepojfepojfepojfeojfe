@@ -10,9 +10,6 @@ const path = require('path');
 const moment = require('moment');
 const yt = require('ytdl-core');
 const request = require('request');
-const config = require('./Configuration.json');
-const tpoints = JSON.parse(fs.readFileSync('./Text.json', 'UTF8'));
-const vpoints = JSON.parse(fs.readFileSync('./Voice.json', 'UTF8'));
 const devs = ['202745501345382400', '461766920400535552', '202745501345382400', '461766920400535552', '202745501345382400', '202745501345382400'];
 
 var cooldownGames = new Set();
@@ -67,7 +64,7 @@ client.on('message', message => {
 	var args2 = message.content.split(' ')[2];
 	var args3 = message.content.split(' ').slice(3).join(' ');
 	var command = message.content.toLowerCase().split(" ")[0];
-	var games = JSON.parse(fs.readFileSync('./games.json', 'utf8'));
+	var games = JSON.parse(fs.readFileSync('./games/games.json', 'utf8'));
 	var muf = message.mentions.users.first();
 	
 	if(message.author.bot) return;
@@ -78,7 +75,7 @@ client.on('message', message => {
 		let timecooldown = '1hour';
 		if(!devs.includes(message.author.id)) return;
 		if(cooldownSetName.has(message.author.id)) return message.reply(`**${ms(ms(timecooldown))}** يجب عليك الانتظار`);
-		if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setname \`\`GaintBot\`\``).then(msg => msg.delete(7000));
+		if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setname \`\`GaintBot\`\``).then(msg => msg.delete(7000));
 		if(args1 == client.user.username) return message.reply('**البوت مسمى من قبل بهذا الاسم**').then(msg => msg.delete(5000));
 		
 		cooldownSetName.add(message.author.id);
@@ -91,7 +88,7 @@ client.on('message', message => {
 	}
 		if(command == prefix + 'setavatar') {
 			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setavatar \`\`Link\`\``).then(msg => msg.delete(7000));
+			if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setavatar \`\`Link\`\``).then(msg => msg.delete(7000));
 			
 			client.user.setAvatar(args1).catch(err => console.log(err)).then
 			return message.reply('**حاول مرة اخرى في وقت لاحق**').then(msg => msg.delete(5000));
@@ -106,28 +103,28 @@ client.on('message', message => {
 		}
 		if(command == prefix + 'setplay') {
 			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setplay \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
+			if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setplay \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
 			client.user.setActivity(args1);
 			message.reply(`\`\`${args1}\`\` **تم تغيير حالة اللعب الى**`).then(msg => msg.delete(5000));
 			message.delete();
 		};
 		if(command == prefix + 'setwatch') {
 			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setwatch \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
+			if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setwatch \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
 			client.user.setActivity(args1, { type: 'WATCHING' });
 			message.reply(`\`\`${args1}\`\` **تم تغيير حالة المشاهدة الى**`).then(msg => msg.delete(5000));
 			message.delete();
 		};
 		if(command == prefix + 'setlisten') {
 			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setlisten \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
+			if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setlisten \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
 			client.user.setActivity(args1, { type: 'LISTENING' });
 			message.reply(`\`\`${args1}\`\` **تم تغيير حالة السماع الى**`).then(msg => msg.delete(5000));
 			message.delete();
 		};
 	    if(command == prefix + 'setstream') {
 			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setstream \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
+			if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}setstream \`\`www.Gaint-Plus.com\`\``).then(msg => msg.delete(7000));
 			client.user.setActivity(args1, 'https://www.twitch.tv/xiaboodz_');
 			message.reply(`\`\`${args1}\`\` **تم تغيير حالة البث الى**`).then(msg => msg.delete(5000));
 			message.delete();
@@ -140,12 +137,12 @@ client.on('message', message => {
     if(command == prefix + 'warn') {
     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('\`\`MANAGE_MESSAGES\`\` **انت لا تمتلك صلاحية**').then(msg => msg.delete(5000));
     let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-    if(!wUser) return message.channel.send(`**➥ Useage:** ${prefix}warn \`\`@Name\`\` reason`).then(msg => msg.delete(5000));
+    if(!wUser) return message.channel.send(`** ↝ Useage:** ${prefix}warn \`\`@Name\`\` reason`).then(msg => msg.delete(5000));
     if(wUser.id === message.author.id) return message.reply('**لا يمكنك اعطاء نفسك وارن**').then(msg => msg.delete(5000));
     if(wUser.hasPermission('ADMINISTRATOR')) return message.reply('**لا يمكنني اعطاء هذا الشخص وارن لانه اداري**').then(msg => msg.delete(5000));
     if (!message.guild.member(wUser).kickable) return message.reply('**لا يمكنني اعطاء هذا الشخص وارن لان رتبته فوق رتبتي**').then(msg => msg.delete(5000));
     let reason = args.slice(2).join(" ");
-    if(!reason) return message.channel.send(`**➥ Useage:** ${prefix}warn @name \`\`Reason\`\``).then(msg => msg.delete(7000));
+    if(!reason) return message.channel.send(`** ↝ Useage:** ${prefix}warn @name \`\`Reason\`\``).then(msg => msg.delete(7000));
 	let muterole = message.guild.roles.find('name', 'PlayerMuted') || message.guild.roles.get(r => r.name === 'PlayerMuted');
     if(!muterole) try {
 		message.guild.createRole({
@@ -176,7 +173,7 @@ client.on('message', message => {
     if (err) console.log(err)
   });
 
-  wUser.send(`**◄══════════► [ Gaint-Plus ] ◄══════════►**\n\n\n**➥ لقد اخذت وارن**\n\n**➥ في سيرفر:**\n➥ [ ${message.guild.name} ]\n\n**➥ بواسطة:**\n➥ [ ${message.author.username}#${message.author.discriminator} ]\n\n**➥ السبب:**\n➥ [ ${reason} ]\n\n**➥ الوارن رقم:**\n➥[ ${warns[wUser.id].warns} ]\n\n\n**◄══════════► [ Gaint-Plus ] ◄══════════►**`);
+  wUser.send(`**◄══════════► [ Gaint-Plus ] ◄══════════►**\n\n\n** ↝ لقد اخذت وارن**\n\n** ↝ في سيرفر:**\n ↝ [ ${message.guild.name} ]\n\n** ↝ بواسطة:**\n ↝ [ ${message.author.username}#${message.author.discriminator} ]\n\n** ↝ السبب:**\n ↝ [ ${reason} ]\n\n** ↝ الوارن رقم:**\n ↝[ ${warns[wUser.id].warns} ]\n\n\n**◄══════════► [ Gaint-Plus ] ◄══════════►**`);
 
   let warnEmbed = new Discord.RichEmbed()
   .setTitle(':no_entry_sign: **[WARN]**')
@@ -184,8 +181,8 @@ client.on('message', message => {
   .setColor('#36393e')
   .addField('User:', `<@${wUser.id}>`, true)
   .addField('By:', `<@${message.author.id}>`, true)
-  .addField('Reason:', `**➥** [ **${reason}** ]`, true)
-  .addField('Warn Number:', `**➥** [ **${warns[wUser.id].warns}** ]`, true)
+  .addField('Reason:', `** ↝** [ **${reason}** ]`, true)
+  .addField('Warn Number:', `** ↝** [ **${warns[wUser.id].warns}** ]`, true)
   .setTimestamp()
   .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 
@@ -284,7 +281,7 @@ if(warns[wUser.id].warns == 2){
     if(command == prefix + 'warns') {
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('\`\`MANAGE_MESSAGES\`\` **انت لا تمتلك صلاحية**').then(msg => msg.delete(5000));
 		let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-		if(!wUser) return message.channel.send(`**➥ Useage:** ${prefix}warns \`\`Name\`\``).then(msg => msg.delete(7000));
+		if(!wUser) return message.channel.send(`** ↝ Useage:** ${prefix}warns \`\`Name\`\``).then(msg => msg.delete(7000));
 		if(wUser.hasPermission('ADMINISTRATOR')) return message.reply('**摇 ȡՎՠȏȑ�').then(msg => msg.delete(3000));
 		 if(!warns[wUser.id]) warns[wUser.id] = {
             warns: 0
@@ -293,7 +290,7 @@ if(warns[wUser.id].warns == 2){
 		.setTitle(':no_entry_sign: **[WARN AMOUNT]**')
 		.setThumbnail(client.user.avatarURL)
 		.addField('User:', `<@${muf.id}>`, true)
-		.addField('Warn Number:', `**➥** [ ${warns[wUser.id].warns} ]`, true)
+		.addField('Warn Number:', `** ↝** [ ${warns[wUser.id].warns} ]`, true)
 		.setTimestamp()
 		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 		message.channel.send(warninfo1);
@@ -311,14 +308,14 @@ if(warns[wUser.id].warns == 2){
 	.setTitle(`:open_file_folder: [**${message.author.username}#${message.author.discriminator}**] معلومات عن`)
 	.setThumbnail(message.author.avatarURL)
 	.setColor('#fdf600')
-	.addField(':crown: **الاسم:**', '**➥** !جنرالل صددام', true)
-	.addField(':crown: **العمر:**', '**➥** 20', true)
-	.addField(':crown: **الرتبة:**', '**➥** Co-Owner', true)
+	.addField(':crown: **الاسم:**', '** ↝** !جنرالل صددام', true)
+	.addField(':crown: **العمر:**', '** ↝** 20', true)
+	.addField(':crown: **الرتبة:**', '** ↝** Co-Owner', true)
 	.addField(':crown: **الاسم بالدسكورد:**', `<@${message.author.id}>`, true)
-	.addField(':crown: **تاريخ انشاء الحساب:**', `**➥** ${message.author.createdAt.toLocaleString()}`, true)
+	.addField(':crown: **تاريخ انشاء الحساب:**', `** ↝** ${message.author.createdAt.toLocaleString()}`, true)
 	.addField(':crown: **الايدي:**', `${message.author.id}`, true)
-	.addField(':crown: **التاق:**', `**➥** #${message.author.discriminator}`, true)
-	.addField(':crown: **تاريخ الدخول الى السيرفر:**', `**➥** ${message.member.joinedAt.toLocaleString()}`, true)
+	.addField(':crown: **التاق:**', `** ↝** #${message.author.discriminator}`, true)
+	.addField(':crown: **تاريخ الدخول الى السيرفر:**', `** ↝** ${message.member.joinedAt.toLocaleString()}`, true)
 	.setTimestamp()
 	.setFooter(`[ 9dAmm ] Is Here.`, message.author.avatarURL)
 	message.channel.send(e9dAmm)
@@ -551,15 +548,15 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
             .setTitle(`:page_with_curl: [**__${client.user.username}#${client.user.discriminator}__**] **معلومات عن بوت**`)
             .setThumbnail(client.user.avatarURL)
             .setColor('#36393e')
-            .addField(':white_check_mark: **__البنق__**', `**➥** [ **${client.pings[0]}ms** ]`, true)
-            .addField(':white_check_mark: **__الذاكرة المستخدمة__**', `**➥** [ **${(process.memoryUsage().rss / 1048576).toFixed()}MB** ]`, true)
-			.addField(':white_check_mark: **__مطور البوت__**', `**➥** [ <@${client.users.get('346629187504832513').id}> ]`, true)
-			.addField(':white_check_mark: **__تم انشاء البوت في__**', `**➥** [ ${moment(client.user.createdAt).format('LLL')} ]`, true)
-            .addField(':white_check_mark: **__عدد السيرفرات__**', `**➥** [ **${client.guilds.size}** ]`, true)
-            .addField(':white_check_mark: **__عدد الرومات__**', `**➥** [ **${client.channels.size}** ]` , true)
-            .addField(':white_check_mark: **__عدد الاعضاء__**',`**➥** [ **${client.users.size}** ]` , true)
-            .addField(':white_check_mark: **__تاق البوت__**', `**➥** [ #**${client.user.discriminator}** ]` , true)
-			.addField(':white_check_mark: **__البرفكس__**', `**➥** [ **${prefix}** ]`, true)
+            .addField(':white_check_mark: **__البنق__**', `** ↝** [ **${client.pings[0]}ms** ]`, true)
+            .addField(':white_check_mark: **__الذاكرة المستخدمة__**', `** ↝** [ **${(process.memoryUsage().rss / 1048576).toFixed()}MB** ]`, true)
+			.addField(':white_check_mark: **__مطور البوت__**', `** ↝** [ <@${client.users.get('346629187504832513').id}> ]`, true)
+			.addField(':white_check_mark: **__تم انشاء البوت في__**', `** ↝** [ ${moment(client.user.createdAt).format('LLL')} ]`, true)
+            .addField(':white_check_mark: **__عدد السيرفرات__**', `** ↝** [ **${client.guilds.size}** ]`, true)
+            .addField(':white_check_mark: **__عدد الرومات__**', `** ↝** [ **${client.channels.size}** ]` , true)
+            .addField(':white_check_mark: **__عدد الاعضاء__**',`** ↝** [ **${client.users.size}** ]` , true)
+            .addField(':white_check_mark: **__تاق البوت__**', `** ↝** [ #**${client.user.discriminator}** ]` , true)
+			.addField(':white_check_mark: **__البرفكس__**', `** ↝** [ **${prefix}** ]`, true)
             .addField(':white_check_mark: **__ايدي البوت__**', `**${client.user.id}**` , true)
             .setFooter(`This Bot was Developed For [${message.guild.name}]`, client.user.avatarURL)
 			.setTimestamp()
@@ -577,24 +574,24 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
       var bansSize = bans.size;
       var server = new Discord.RichEmbed()
       .setTitle(`:books: [ **__${message.guild.name}__** ] **معلومات عن سيرفر**`)
-      .addField(`:crown: **__Server Owner__**`, `**➥** [ ${message.guild.owner} ]`, true)
+      .addField(`:crown: **__Server Owner__**`, `** ↝** [ ${message.guild.owner} ]`, true)
       .addField(`:id: **__Server ID__**`, `**${message.guild.id}**`, true)
-      .addField(`:satellite: **__Server Type__**`, `**➥** [ **${message.guild.region}** ]`, true)
-      .addField(`:date: **__Server Created At__**`, `**➥** [ **${moment(message.guild.createdAt).format("LL")}** ]`, true)
-      .addField(`:first_place: **__Roles Amount__**`, `**➥** [ **${message.guild.roles.size}** ]`, true)
-      .addField(`:name_badge: **__Bans Amount__**`, `**➥** [ **${bansSize}** ]`, true)
-      .addField(`:bar_chart: **__Channels Amount__**`, `**➥** [ **${message.guild.channels.size}** ]`, true)
-      .addField(`:pencil: **__Categores Amount__**`, `**➥** [ **${message.guild.channels.filter(m=>m.type == 'category').size}** ]`, true)
-      .addField(`:pencil: **__Channels Text Amount__**`, `**➥** [ **${message.guild.channels.filter(m=>m.type == 'text').size}** ]`, true)
-      .addField(`:microphone2: **__Channels Voice Amount__**`, `**➥** [ **${message.guild.channels.filter(m=>m.type == 'voice').size}** ]`, true)
-	  .addField(`:zzz: **__AFK Channel__**`, `**➥** [ **${message.guild.afkChannel || 'لا يوجد'}** ]`, true)
-      .addField(`:robot: **__Bots Count__**`, `**➥** [ **${botCount}** ]`, true)
-      .addField(`:busts_in_silhouette: **__Members Count__**`, `**➥** [ **${memberCount}** ]`, true)
-	  .addField(`:green_heart: **__Online Members__**`, `**➥** [ **${message.guild.members.filter(m=>m.presence.status == 'online').size}** ]`, true)
-	  .addField(`:yellow_heart: **__Idle Members__**`, `**➥** [ **${message.guild.members.filter(m=>m.presence.status == 'idle').size}** ]`, true)
-	  .addField(`:red_circle: **__Dnd Members__**`, `**➥** [**${message.guild.members.filter(m=>m.presence.status == 'dnd').size}** ]`, true)
-	  .addField(`:black_circle: **__Offline Members__**`, `**➥** [ **${message.guild.members.filter(m=>m.presence.status == 'offline').size}** ]`, true)
-	  .addField(`:bust_in_silhouette: **__Last Member__**`, `**➥** [ ${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `<@!${m.id}>`).splice(0, 1)} ]`, true)
+      .addField(`:satellite: **__Server Type__**`, `** ↝** [ **${message.guild.region}** ]`, true)
+      .addField(`:date: **__Server Created At__**`, `** ↝** [ **${moment(message.guild.createdAt).format("LL")}** ]`, true)
+      .addField(`:first_place: **__Roles Amount__**`, `** ↝** [ **${message.guild.roles.size}** ]`, true)
+      .addField(`:name_badge: **__Bans Amount__**`, `** ↝** [ **${bansSize}** ]`, true)
+      .addField(`:bar_chart: **__Channels Amount__**`, `** ↝** [ **${message.guild.channels.size}** ]`, true)
+      .addField(`:pencil: **__Categores Amount__**`, `** ↝** [ **${message.guild.channels.filter(m=>m.type == 'category').size}** ]`, true)
+      .addField(`:pencil: **__Channels Text Amount__**`, `** ↝** [ **${message.guild.channels.filter(m=>m.type == 'text').size}** ]`, true)
+      .addField(`:microphone2: **__Channels Voice Amount__**`, `** ↝** [ **${message.guild.channels.filter(m=>m.type == 'voice').size}** ]`, true)
+	  .addField(`:zzz: **__AFK Channel__**`, `** ↝** [ **${message.guild.afkChannel || 'لا يوجد'}** ]`, true)
+      .addField(`:robot: **__Bots Count__**`, `** ↝** [ **${botCount}** ]`, true)
+      .addField(`:busts_in_silhouette: **__Members Count__**`, `** ↝** [ **${memberCount}** ]`, true)
+	  .addField(`:green_heart: **__Online Members__**`, `** ↝** [ **${message.guild.members.filter(m=>m.presence.status == 'online').size}** ]`, true)
+	  .addField(`:yellow_heart: **__Idle Members__**`, `** ↝** [ **${message.guild.members.filter(m=>m.presence.status == 'idle').size}** ]`, true)
+	  .addField(`:red_circle: **__Dnd Members__**`, `** ↝** [**${message.guild.members.filter(m=>m.presence.status == 'dnd').size}** ]`, true)
+	  .addField(`:black_circle: **__Offline Members__**`, `** ↝** [ **${message.guild.members.filter(m=>m.presence.status == 'offline').size}** ]`, true)
+	  .addField(`:bust_in_silhouette: **__Last Member__**`, `** ↝** [ ${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `<@!${m.id}>`).splice(0, 1)} ]`, true)
 	  .setFooter(`This Bot was Developed For [${message.guild.name}]`, client.user.avatarURL)
 	  .setTimestamp()
 	  .setColor('#36393e')
@@ -612,10 +609,10 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 	if(command == prefix + 'id') {
 		if (args1 == '') {
 			var z = message.author;
-			var accountCreatedAt = ['**➥** [ **' + moment(z.createdAt).format('D/M/YYYY h:mm a') + '** ]\n➥ [ \`\`' + moment(z.createdAt).fromNow() + '\`\` ]']
+			var accountCreatedAt = ['** ↝** [ **' + moment(z.createdAt).format('D/M/YYYY h:mm a') + '** ]\n ↝ [ \`\`' + moment(z.createdAt).fromNow() + '\`\` ]']
 			}else {
 				var z = message.mentions.users.first();
-				var accountCreatedAt = ['**➥** [ **' + moment(z.createdAt).format('D/M/YYYY h:mm a') + '** ]\n➥ [ \`\`' + moment(z.createdAt).fromNow() + '\`\` ]']
+				var accountCreatedAt = ['** ↝** [ **' + moment(z.createdAt).format('D/M/YYYY h:mm a') + '** ]\n ↝ [ \`\`' + moment(z.createdAt).fromNow() + '\`\` ]']
 			}
 			let d = z.createdAt;
 			let n = d.toLocaleString();
@@ -633,14 +630,14 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 					}
 					let idPlayer = new Discord.RichEmbed()
 					.setColor('#36393e')
-					.addField(':bust_in_silhouette: **__الاسم:__**', `**➥** [ <@${z.id}> ]`, true)
+					.addField(':bust_in_silhouette: **__الاسم:__**', `** ↝** [ <@${z.id}> ]`, true)
 					.addField(':id: **__الايدي:__**', `**${z.id}**`, true)
-					.addField(':video_game: **__يلعب:__**', `**➥** [ ${y} ]`, true)
-					.addField(':red_circle: **__الحالة:__**', `**➥** [ **${z.presence.status}** ]`, true)
-					.addField(':robot: **__نوع الحساب:__**', `**➥** [ **${w}** ]`, true)
-					.addField(':hash: **__التاق حق الحساب:__**', `**➥** [ **#${z.discriminator}** ]`,true)
+					.addField(':video_game: **__يلعب:__**', `** ↝** [ ${y} ]`, true)
+					.addField(':red_circle: **__الحالة:__**', `** ↝** [ **${z.presence.status}** ]`, true)
+					.addField(':robot: **__نوع الحساب:__**', `** ↝** [ **${w}** ]`, true)
+					.addField(':hash: **__التاق حق الحساب:__**', `** ↝** [ **#${z.discriminator}** ]`,true)
 					.addField(':calendar_spiral: **__تاريخ دخول الدسكورد:__**', `${accountCreatedAt}`, true)
-					.addField(':spy: **__النك نيم:__**', `**➥** [ **${z.nickname || 'لا يوجد'}** ]`, true)
+					.addField(':spy: **__النك نيم:__**', `** ↝** [ **${z.nickname || 'لا يوجد'}** ]`, true)
 					.setThumbnail(`${z.avatarURL}`)
 					.setFooter(`This Bot was Developed For [ ${message.guild.name} ] .`, client.user.avatarURL)
 					.setTimestamp()
@@ -721,12 +718,12 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
     let size = 1;
     if(message.author.bot) return;
 	if(!message.guild.member) return;
-    if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}find (اي حرف من الاسم الي تبيه)`);
+    if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}find (اي حرف من الاسم الي تبيه)`);
 
       var playersFind = new Discord.RichEmbed()
       .setTitle(`:white_check_mark: **كود البحث عن الاعضاء بواسطة الاسم**`)
       .setThumbnail(client.user.avatarURL)
-      .setDescription(`**\n➥ البحث عن الاعضاء الموجود بداخل اسمائهم:**\n " ${args1} "\n\n**➥ عدد الاعضاء:**\n " ${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n') || 'لا يوجد اعضاء بهذه الاحرف'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
+      .setDescription(`**\n ↝ البحث عن الاعضاء الموجود بداخل اسمائهم:**\n " ${args1} "\n\n** ↝ عدد الاعضاء:**\n " ${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.user.username.toUpperCase().includes(args1.toUpperCase())).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n') || 'لا يوجد اعضاء بهذه الاحرف'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
       .setColor('#36393e')
       .setTimestamp()
       .setFooter(message.author.tag, message.author.avatarURL)
@@ -744,14 +741,14 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		var tagPlayer = message.author.discriminator;
 	}else {
 		var tagPlayer = args1;
-		if(isNaN(args1)) return message.channel.send(`**➥ Useage:** ${prefix}discrim Or ${prefix}discrim 0001 <- (example)`);
+		if(isNaN(args1)) return message.channel.send(`** ↝ Useage:** ${prefix}discrim Or ${prefix}discrim 0001 <- (example)`);
 		if(args1.length != 4) return message.reply('**يجب ان يتكون التاق من 4 ارقام**');
 	}
 
       var playersFind = new Discord.RichEmbed()
       .setTitle(`:white_check_mark: **كود البحث عن الاعضاء بواسطة التاق**`)
       .setThumbnail(client.user.avatarURL)
-      .setDescription(`**\n➥ البحث عن الاعضاء الذين لديهم التاق التالي:**\n " #${tagPlayer} "\n\n**➥ عدد الاعضاء:**\n " ${client.users.filter(m=>m.discriminator == tagPlayer).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${client.users.filter(m=>m.discriminator == tagPlayer).map(m=>size++ + '. ' + m.tag).slice(0,20).join('\n') || ' لا يوجد اعضاء بهذه الارقام'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
+      .setDescription(`**\n ↝ البحث عن الاعضاء الذين لديهم التاق التالي:**\n " #${tagPlayer} "\n\n** ↝ عدد الاعضاء:**\n " ${client.users.filter(m=>m.discriminator == tagPlayer).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${client.users.filter(m=>m.discriminator == tagPlayer).map(m=>size++ + '. ' + m.tag).slice(0,20).join('\n') || ' لا يوجد اعضاء بهذه الارقام'}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
       .setColor('#36393e')
       .setTimestamp()
       .setFooter(message.author.tag, message.author.avatarURL)
@@ -764,13 +761,13 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 
 	if(command == prefix + 'bc') {
 		if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('\`\`ADMINISTRATOR\`\` **انت لا تمتلك صلاحية**')
-		if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}bc (كلامك)`);
+		if(!args1) return message.channel.send(`** ↝ Useage:** ${prefix}bc (كلامك)`);
 
 		let bcSure = new Discord.RichEmbed()
 		.setTitle(`:mailbox_with_mail: **هل انت متأكد انك تريد ارسال هذه الرسالة الى** ${message.guild.memberCount} **عضو؟**`)
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
-		.setDescription(`**\n:envelope: ➥ الرسالة**\n\n${args1}`)
+		.setDescription(`**\n:envelope:  ↝ الرسالة**\n\n${args1}`)
 		.setTimestamp()
 		.setFooter(message.author.tag, message.author.avatarURL)
 
@@ -854,9 +851,9 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			var inviteInfo = new Discord.RichEmbed()
 			.setTitle(`:incoming_envelope: **[INVITE INFO]** ${Username}`)
 			.setThumbnail(client.user.avatarURL)
-			.addField('**الدعوات**', `**➥** [ شخص **${Number(inviteCount)}** ]`)
-			.addField('**تم الانضمام للسيرفر من**', `**➥** [ يوم **${daysJoined.toFixed(0)}** ]`)
-			.addField('**رابط دعوة الانضمام**', `**➥** [ **https://discord.gg/${inviteCode || 'Zm2U6we'}** ]`)
+			.addField('**الدعوات**', `** ↝** [ شخص **${Number(inviteCount)}** ]`)
+			.addField('**تم الانضمام للسيرفر من**', `** ↝** [ يوم **${daysJoined.toFixed(0)}** ]`)
+			.addField('**رابط دعوة الانضمام**', `** ↝** [ **https://discord.gg/${inviteCode || 'Zm2U6we'}** ]`)
 			.setColor('#36393e')
 			.setTimestamp()
 			.setFooter(Tag, Avatar)
@@ -875,7 +872,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		.setTitle(':white_check_mark: **امر الفويس اونلاين**')
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
-		.setDescription(`**\n➥ عدد المتواجدين صوت**\n" ${message.guild.members.filter(member => member.voiceChannel).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.voiceChannel).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n')}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
+		.setDescription(`**\n ↝ عدد المتواجدين صوت**\n" ${message.guild.members.filter(member => member.voiceChannel).size} "\n\n\`\`\`════════════════════════════════════════════════════════════════════════════════════════\n\n${message.guild.members.filter(m=>m.voiceChannel).map(m=>size++ + '. ' + m.user.tag).slice(0,20).join('\n')}\n\n════════════════════════════════════════════════════════════════════════════════════════\`\`\``)
 		.setTimestamp()
 		.setFooter(message.author.tag, message.author.avatarURL)
 		
@@ -913,7 +910,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		
 		let qLaz = new Discord.RichEmbed()
 		.setTitle('')
-		.setDescription(`اسرع واحد يقوم بحل اللغز التالي:\n\n➥ **${item.type}**`)
+		.setDescription(`اسرع واحد يقوم بحل اللغز التالي:\n\n ↝ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
 		.setTimestamp()
@@ -955,7 +952,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		
 		let qFkk = new Discord.RichEmbed()
 		.setTitle('')
-		.setDescription(`اسرع واحد يقوم بتفكيك الجملة التالية:\n➥ **${item.type}**`)
+		.setDescription(`اسرع واحد يقوم بتفكيك الجملة التالية:\n ↝ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
 		.setTimestamp()
@@ -997,7 +994,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		
 		let qFast = new Discord.RichEmbed()
 		.setTitle('')
-		.setDescription(`اسرع واحد يكتب الجملة التالية:\n\n➥ **${item.type}**`)
+		.setDescription(`اسرع واحد يكتب الجملة التالية:\n\n ↝ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
 		.setTimestamp()
@@ -1125,7 +1122,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		
 		let qMath = new Discord.RichEmbed()
 		.setTitle('')
-		.setDescription(`اسرع واحد يحسب المعادلة التالية:\n\n➥ **${item.type}**`)
+		.setDescription(`اسرع واحد يحسب المعادلة التالية:\n\n ↝ **${item.type}**`)
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
 		.setTimestamp()
@@ -1192,19 +1189,19 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		let pointsPlayer = new Discord.RichEmbed()
 		.setThumbnail(client.user.avatarURL)
 		.setColor('#36393e')
-		.setTitle(`**\n:heavy_plus_sign: [ مجموع النقاط [ ${allPoints}\n**`)
-		.addField('**نقاط لعبة الالغاز:**', `➥ [ **${lazPoints}** ]`, true)
-		.addField('**نقاط لعبة فكك:**', `➥ [ **${fkkPoints}** ]`, true)
-		.addField('**نقاط لعبة اسرع كتابة:**', `➥ [ **${fastPoints}** ]`, true)
-		.addField('**نقاط لعبة الايموجي:**', `➥ [ **${emojiPoints}** ]`, true)
-		.addField('**نقاط لعبة الاعلام:**', `➥ [ **${flagPoints}** ]`, true)
-		.addField('**نقاط لعبة الرياضيات:**', `➥ [ **${mathPoints}** ]`, true)
+		.setTitle(`**\n:crown: [ مجموع النقاط [ ${allPoints}\n**`)
+		.addField('**نقاط لعبة الالغاز:**', ` ↝ [ **${lazPoints}** ] ↜`, true)
+		.addField('**نقاط لعبة فكك:**', ` ↝ [ **${fkkPoints}** ] ↜`, true)
+		.addField('**نقاط لعبة اسرع كتابة:**', ` ↝ [ **${fastPoints}** ] ↜`, true)
+		.addField('**نقاط لعبة الايموجي:**', ` ↝ [ **${emojiPoints}** ] ↜`, true)
+		.addField('**نقاط لعبة الاعلام:**', ` ↝ [ **${flagPoints}** ] ↜`, true)
+		.addField('**نقاط في لعبة الحساب:**', ` ↝ [ **${mathPoints}** ] ↜`, true)
 		.setTimestamp()
 		.setFooter(playerName, playerAvatar)
 		
 		message.channel.send(pointsPlayer);
 		
-		fs.writeFile("./games.json", JSON.stringify(games), (err) => {
+		fs.writeFile("./games/games.json", JSON.stringify(games), (err) => {
 			if(err) console.error(err)
 		});
 	};
@@ -1219,21 +1216,21 @@ client.on('message', message => {
 		var channel = message.guild.channels.find('name', '⫸【『الاقتراحات』】');
 		if(!channel) return;
 		var sug = message.content.split(' ').slice(1).join(' ');
-        if(!sug) return message.channel.send(`**➥ Useage:** ${prefix}sug <اقتراحك>`).then(msg => msg.delete(5000));
+        if(!sug) return message.channel.send(`** ↝ Useage:** ${prefix}sug <اقتراحك>`).then(msg => msg.delete(5000));
 		message.delete();
 		
 		var sugDone = new Discord.RichEmbed()
 		.setTitle(`**تم ارسال اقتراحك بنجاح ! شكرا على اقتراحك**`)
 		.setColor('#36393e')
 		.setThumbnail(client.user.avatarURL)
-		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}`)
+		.setDescription(`**\n ↝ اقتراحك هو**\n\n${sug}`)
 		.setTimestamp()
 		.setFooter(message.author.tag, message.author.avatarURL)
 		
 		var sugSure = new Discord.RichEmbed()
 		.setThumbnail(client.user.avatarURL)
 		.setTitle(`**هل انت متأكد من انك تريد ارسال اقتراحك ؟ معك دقيقة قبل الالغاء**`)
-		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}\n\n:white_check_mark: للارسال\n\n:negative_squared_cross_mark: للالغاء`)
+		.setDescription(`**\n ↝ اقتراحك هو**\n\n${sug}\n\n:white_check_mark: للارسال\n\n:negative_squared_cross_mark: للالغاء`)
 		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 		.setTimestamp()
 		.setColor('#36393e')
@@ -1251,7 +1248,7 @@ Yes.on("collect", r => {
 	msg.delete();
 	var newsug = new Discord.RichEmbed()
 	.setTitle(`**:bell: اقــــــتـــراح جـــــديــــــد :bell:**`)
-	.setDescription(`**➥ من**\n<@${member}>\n\n**➥ الاقتراح هو**\n\n${sug}`)
+	.setDescription(`** ↝ من**\n<@${member}>\n\n** ↝ الاقتراح هو**\n\n${sug}`)
 	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 	.setTimestamp()
 	.setThumbnail(client.user.avatarURL)
@@ -1278,14 +1275,14 @@ client.on('message', message => {
 		if(message.channel.type === 'dm') return;
 		if(!message.guild.channels.get('472937440454377472')) return;
 		if(cooldownSurvival.has(message.author.id)) return message.reply('**لقد قمت بالتقديم مسبقا**');
-		if(!mc) return message.channel.send(`**➥ Useage:** ${prefix}survival-join <اسمك بماين كرافت>`).then(msg => msg.delete(5000));
+		if(!mc) return message.channel.send(`** ↝ Useage:** ${prefix}survival-join <اسمك بماين كرافت>`).then(msg => msg.delete(5000));
 		if(mc.length > 20) return message.reply('**هذا ليس اسم بماين كرافت**').then(msg => msg.delete(3000));
 		if(mc.length < 3) return message.reply('**هذا ليس اسم بماين كرافت**').then(msg => msg.delete(3000));
 		
 		cooldownSurvival.add(message.author.id);
 		
 		var done = new Discord.RichEmbed()
-		.setDescription(`**تم ارسال تقديمك بنجاح !**\n\n**➥ اسمك بماين كرافت**\n[ ${mc} ]`)
+		.setDescription(`**تم ارسال تقديمك بنجاح !**\n\n** ↝ اسمك بماين كرافت**\n[ ${mc} ]`)
 		.setColor('#36393e')
 		.setThumbnail(client.user.avatarURL)
 		.setTimestamp()
@@ -1293,7 +1290,7 @@ client.on('message', message => {
 
 		var apply = new Discord.RichEmbed()
 		.setThumbnail(client.user.avatarURL)
-		.setDescription(`**➥ الاسم**\n<@${player}>\n\n**➥ الاسم بماين كرافت**\n[ ${mc} ]`)
+		.setDescription(`** ↝ الاسم**\n<@${player}>\n\n** ↝ الاسم بماين كرافت**\n[ ${mc} ]`)
 		.setTimestamp()
 		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 
@@ -1317,7 +1314,7 @@ noaccept.on('collect', r => {
 	})
 
 aceept.on('collect', r => {
-	message.author.send('**لقد تم قبولك بسيرفر السرفايفل**\n\n**➥ IP**: _217.195.190.59:25648_\n**➥ Version**: _1.13_');
+	message.author.send('**لقد تم قبولك بسيرفر السرفايفل**\n\n** ↝ IP**: _217.195.190.59:25648_\n** ↝ Version**: _1.13_');
 	var survivalRole = message.guild.roles.find('name', '• Survival');
 	if(!survivalRole) return message.guild.owner.send(`\`\`• Survival\`\` **الرجاء صنع رتبة باسم**`);
 	message.member.addRole(survivalRole);
@@ -1334,7 +1331,7 @@ client.on('messageDelete', message => {
 	.setTitle(`:wastebasket: **[MESSAGE DELETE]**`)
 	.setThumbnail(client.user.avatarURL)
 	.setColor('#36393e')
-	.setDescription(`**\n➥ الاسم:**\n<@${message.author.id}>\n\n**➥ الرسالة التي تم مسحها:**\n\`\`\`${message}\`\`\`\n**➥ في روم:**\n${message.channel}`)
+	.setDescription(`**\n ↝ الاسم:**\n<@${message.author.id}>\n\n** ↝ الرسالة التي تم مسحها:**\n\`\`\`${message}\`\`\`\n** ↝ في روم:**\n${message.channel}`)
 	.setTimestamp()
 	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 	if(!message.guild.channels.find('name', 'Gaintbot-log')) return;
@@ -1348,7 +1345,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 	.setTitle(`:gear: **[MESSAGE EDIT]**`)
 	.setThumbnail(client.user.avatarURL)
 	.setColor('#36393e')
-	.setDescription(`**\n➥ الاسم:**\n<@${newMessage.author.id}>\n\n**➥ قبل التعديل:**\n\`\`\`${oldMessage}\`\`\`\n**➥ بعد التعديل:**\n\`\`\`${newMessage}\`\`\`\n**➥ في روم:**\n${newMessage.channel}`)
+	.setDescription(`**\n ↝ الاسم:**\n<@${newMessage.author.id}>\n\n** ↝ قبل التعديل:**\n\`\`\`${oldMessage}\`\`\`\n** ↝ بعد التعديل:**\n\`\`\`${newMessage}\`\`\`\n** ↝ في روم:**\n${newMessage.channel}`)
 	.setTimestamp()
 	.setFooter(`${newMessage.author.username}#${newMessage.author.discriminator}`, newMessage.author.avatarURL)
 	if(!guild.channels.find('name', 'Gaintbot-log')) return;
@@ -1365,7 +1362,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 		 var roleCreate = new Discord.RichEmbed()
 		 .setTitle(':white_check_mark: **[ROLE CREATE]**')
 		 .setThumbnail(client.user.avatarURL)
-		 .setDescription(`**\n➥ اسم الرتبة:**\n\`\`${rc.name}\`\`\n\n**➥ بواسطة:**\n<@${user}>`)
+		 .setDescription(`**\n ↝ اسم الرتبة:**\n\`\`${rc.name}\`\`\n\n** ↝ بواسطة:**\n<@${user}>`)
 		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${rc.guild.name} ]`, client.user.avatarURL)
@@ -1383,7 +1380,7 @@ client.on("roleDelete", rd => {
 		 var roleDelete = new Discord.RichEmbed()
 		 .setTitle(':negative_squared_cross_mark: **[ROLE DELETE]**')
 		 .setThumbnail(client.user.avatarURL)
-		 .setDescription(`**\n➥ اسم الرتبة:**\n\`\`${rd.name}\`\`\n\n**➥ بواسطة:**\n<@${user}>`)
+		 .setDescription(`**\n ↝ اسم الرتبة:**\n\`\`${rd.name}\`\`\n\n** ↝ بواسطة:**\n<@${user}>`)
 		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${rd.guild.name} ]`, client.user.avatarURL)
@@ -1403,7 +1400,7 @@ client.on('channelCreate', cc => {
 		 var channelCreate = new Discord.RichEmbed()
 		 .setTitle(':white_check_mark: **[CHANNEL CREATE]**')
 		 .setThumbnail(client.user.avatarURL)
-		 .setDescription(`**\n➥ اسم الروم:**\n<#${cc.id}>\n\n**➥ بواسطة:**\n<@${user}>`)
+		 .setDescription(`**\n ↝ اسم الروم:**\n<#${cc.id}>\n\n** ↝ بواسطة:**\n<@${user}>`)
 		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${cc.guild.name} ]`, client.user.avatarURL)
@@ -1421,7 +1418,7 @@ client.on('channelDelete', dc => {
 		 var channelDelete = new Discord.RichEmbed()
 		 .setTitle(':negative_squared_cross_mark: **[CHANNEL DELETE]**')
 		 .setThumbnail(client.user.avatarURL)
-		 .setDescription(`**\n➥ اسم الروم:**\n#${dc.name}\n\n**➥ بواسطة:**\n<@${user}>`)
+		 .setDescription(`**\n ↝ اسم الروم:**\n#${dc.name}\n\n** ↝ بواسطة:**\n<@${user}>`)
 		 .setColor('#36393e')
 		 .setTimestamp()
 		 .setFooter(`This Bot was Developed For [ ${dc.guild.name} ]`, client.user.avatarURL)
@@ -1480,205 +1477,7 @@ client.on('guildMemberRemove', member => {
 	if(!member.guild.channels.find('name', 'Gaintbot-log')) return;
 	member.guild.channels.find('name', 'Gaintbot-log').send(memberleft);
 });
-
-client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
-	
-  let serverMutedOld = voiceOld.serverMute;
-  let serverMutedNew = voiceNew.serverMute;
-  let serverDeafOld = voiceOld.serverDeaf;
-  let serverDeafNew = voiceNew.serverDeaf;
-  
-  let channelLog = voiceOld.guild.channels.find('name', 'Gaintbot-log');
-  if(!channelLog) return;
-    voiceOld.guild.fetchAuditLogs()
-    .then(logs => {
-      let user = logs.entries.first().executor.id
-    if(serverMutedOld === false && serverMutedNew === true) {
-       let serverMutev = new Discord.RichEmbed()
-       .setTitle(':octagonal_sign: **[VOICE MUTE]**')
-       .addField('User', voiceNew, true)
-       .addField('By', `<@${user}>`, true)
-       .setThumbnail(client.user.avatarURL)
-       .setColor('#36393e')
-       .setTimestamp()
-       .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
-
-       channelLog.send(serverMutev);
-    }
-    if(serverMutedOld === true && serverMutedNew === false) {
-       let serverUnmutev = new Discord.RichEmbed()
-       .setTitle(':microphone: **[VOICE UNMUTE]**')
-       .addField('User', voiceNew, true)
-       .addField('By', `<@${user}>`, true)
-       .setThumbnail(client.user.avatarURL)
-       .setColor('#36393e')
-       .setTimestamp()
-       .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
-
-       channelLog.send(serverUnmutev);
-    }
-    if(serverDeafOld === false && serverDeafNew === true) {
-       let serverDeafv = new Discord.RichEmbed()
-       .setTitle(':octagonal_sign: **[VOICE DEAF]**')
-       .addField('User', voiceNew, true)
-       .addField('By', `<@${user}>`, true)
-       .setThumbnail(client.user.avatarURL)
-       .setColor('#36393e')
-       .setTimestamp()
-       .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
-
-       channelLog.send(serverDeafv);
-    }
-    if(serverDeafOld === true && serverDeafNew === false) {
-       let serverUndeafv = new Discord.RichEmbed()
-       .setTitle(':headphones: **[VOICE UNDEAF]**')
-       .addField('User', voiceNew, true)
-       .addField('By', `<@${user}>`, true)
-       .setThumbnail(client.user.avatarURL)
-       .setColor('#36393e')
-       .setTimestamp()
-       .setFooter(voiceNew.user.tag, voiceNew.user.avatarURL)
-
-       channelLog.send(serverUndeafv);
-	}
-	})
-// كود الرومات المؤقته
-	if(voiceNew.voiceChannelID !== '480818229648949259') return;
-	voiceNew.guild.createChannel(voiceNew.user.username, 'voice').then((channel) => {
-		channel.setParent('480818169104171028');
-		channel.overwritePermissions(voiceNew, {
-			MANAGE_CHANNEL: true,
-			MANAGE_PERMSSIONS: true,
-			VIEW_CHANNEL: true,
-			CONNECT: true,
-			SPEAK: true,
-			USE_VOICE_ACTIVITY: true
-		})
-			
-			voiceNew.setVoiceChannel(channel.id);
-			
-			client.channels.get('480818229648949259').overwritePermissions(voiceNew, {
-				CONNECT: false,
-				SPEAK: false
-			})
-			
-			let scan = setInterval(() => {
-				if(!voiceNew.voiceChannel) {
-					channel.delete();
-					client.channels.get('480818229648949259').overwritePermissions(voiceNew, {
-						CONNECT: true,
-						SPEAK: true
-					})
-				}
-			}, 3000);
-		});
-});
-
-function playMusic(id, message) {
-	voiceChannel = message.member.voiceChannel;
-	
-	if(!voiceChannel) {
-		let notVoiceChannel = new Discord.RichEmbed()
-		.setTitle(':name_badge: **Error**')
-		.setColor('#36393e')
-		.setThumbnail(client.user.avatarURL)
-		.setDescription('**\nلازم تكون بروم صوتي**')
-		.setTimestamp()
-		.setFooter(message.author.tag, message.author.avatarURL)
-		
-		message.channel.send(notVoiceChannel);
-		
-	}else {
-	voiceChannel.join()
-		.then(connection => {
-					message.channel.send({embed: {
-                    color: 3447003,
-                    description: "**الان تعمل اغنية : **" + songsQueue[0],
-                    }});
-			console.log('الان تعمل اغنية : ' + songsQueue[0])
-			stream = yt(`https://www.youtube.com/watch?v=${id}`, {
-				filter: 'audioonly'
-			})
-
-			skipRequest = 0;
-			skippers = [];
-
-			dispatcher = connection.playStream(stream);
-			dispatcher.setVolume(0.50);
-			dispatcher.on('end', () => {
-				skipRequest = 0;
-				skippers = [];
-				queue.shift();
-				songsQueue.shift();
-				if (queue.length === 0) {
-					console.log("Disconnected...");
-					queue = [];
-					songsQueue = [];
-					isPlaying = false;
-				} else {
-					setTimeout(() => playMusic(queue[0], message), 500);
-				}
-			});
-		})
-		.catch(error => console.log(error));
-	}
-}
-
-async function getID(str) {
-	if (str.indexOf("youtube.com") > -1) {
-		return getYTID(str);
-	} else {
-		let body = await axios(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=${encodeURIComponent(str)}&key=${ytApiKey}`);
-		if (body.data.items[0] === undefined) {
-			return null;
-		} else {
-			return body.data.items[0].id.videoId;
-		}
-	}
-}
-
-function addToQueue(strID) {
-	if (strID.indexOf("youtube.com")) {
-		queue.push(getYTID(strID));
-	} else {
-		queue.push(strID);
-		songsQueue.push(strID);
-	}
-}
-
-function skipSong(message) {
-	dispatcher.end();
-}
-
-async function searchYouTube(str) {
-	let search = await axios(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=${encodeURIComponent(str)}&key=${ytApiKey}`);
-	if (search.data.items[0] === undefined) {
-		return null;
-	} else {
-		return search.data.items;
-	}
-}
-
-async function getYouTubeResultsId(ytResult, numOfResults) {
-	let resultsID = [];
-	await youtube.searchVideos(ytResult, numOfResults)
-		.then(results => {
-			for (const resultId of results) {
-				resultsID.push(resultId.title);
-			}
-		})
-		.catch(err => console.log(err));
-	return resultsID;
-}
-
-function shuffle(queue) {
-	for (let i = queue.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[queue[i], queue[j]] = [queue[j], queue[i]];
-	}
-	return queue;
-}
-
+   
    
       client.on("message", message => {
     if (message.content.toLowerCase() === prefix + "help") {
@@ -1693,12 +1492,14 @@ function shuffle(queue) {
          .setURL('')
          .setDescription(`
  **
-╭━━━╮╱╱╱╱╱╱╭╮╱╭━━━┳╮
-┃╭━╮┃╱╱╱╱╱╭╯╰╮┃╭━╮┃┃
-┃┃╱╰╋━━┳┳━╋╮╭╯┃╰━╯┃┃╭╮╭┳━━╮
-┃┃╭━┫╭╮┣┫╭╮┫┃╱┃╭━━┫┃┃┃┃┃━━┫
-┃╰┻━┃╭╮┃┃┃┃┃╰╮┃┃╱╱┃╰┫╰╯┣━━┃
-╰━━━┻╯╰┻┻╯╰┻━╯╰╯╱╱╰━┻━━┻━━╯
+╭━━━┳╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮
+┃╭━╮┃┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮
+┃╰━╯┃┃╭━━┳╮╱╭┫╰╯╰┳━┻╮╭╋━━╮
+┃╭━━┫┃┃╭╮┃┃╱┃┃╭━╮┃╭╮┃┃┃━━┫
+┃┃╱╱┃╰┫╭╮┃╰━╯┃╰━╯┃╰╯┃╰╋━━┃
+╰╯╱╱╰━┻╯╰┻━╮╭┻━━━┻━━┻━┻━━╯
+╱╱╱╱╱╱╱╱╱╭━╯┃
+╱╱╱╱╱╱╱╱╱╰━━╯
 
 
 
@@ -1720,7 +1521,7 @@ function shuffle(queue) {
 
 #فكك | #spelling
 
-#اسرع | #fast
+#اسرع كتابة | #fasttyping
 
 #عواصم | #captials ( قريبا | Comming Soon )
 
@@ -1737,8 +1538,6 @@ function shuffle(queue) {
 #اعكس | #reverse  ( قريبا | Comming Soon )
 
 #احسب | #maths
-
-#برامج | #applications
 
 سيرفر الرئيسي | Offical Server [ discord.gg/uwBeCgc ]
 
@@ -1824,63 +1623,4 @@ if (message.content.startsWith(prefix + 'points')) { // ! clientHema ★#6090
 }); // ! clientHema ★#6090
  // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
 
-client.config = config;
-client.login(process.env.BOT_TOKEN);
-client.on('ready',async () => {
-  console.log(`.Leaderboard.`);
-  client.users.forEach(m => {
-    if(m.bot) return;
-    if(!tpoints[m.id]) tpoints[m.id] = {points: 0, id: m.id};
-    fs.writeFileSync("./Text.json", JSON.stringify(tpoints, null, 2));
- 
-    if(!vpoints[m.id]) vpoints[m.id] = {points: 0, id: m.id};
-    fs.writeFileSync("./Voice.json", JSON.stringify(vpoints, null, 2));
-  });
-});
- 
-client.on('message',async message => {
-  if(message.author.bot || message.channel.type === 'dm') return;
-  let args = message.content.split(' ');
-  let member = message.member;
-  let mention = message.mentions.users.first();
-  let guild = message.guild;
-  let author = message.author;
- 
-  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
-  tpoints[author.id].points += rPoints;
-  fs.writeFileSync("./Text.json", JSON.stringify(tpoints, null, 2));
-  if(args[0] === `${prefix}top`) {
-    let _voicePointer = 1;
-    let _textPointer = 1;
-    let _voiceArray = Object.values(vpoints);
-    let _textArray = Object.values(tpoints);
-    let _topText = _textArray.slice(0, 5).map(r => `**\`.${_textPointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
-    let _voiceText = _voiceArray.slice(0, 5).map(r => `**\`.${_voicePointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
- 
-    let topRoyale = new Discord.RichEmbed();
-    topRoyale.setAuthor(message.author.username, message.author.avatarURL);
-    topRoyale.setTitle('# "📋 Guild Score Leaderboards');
-    //topRoyale.setThumbnail(message.guild.iconURL);
-    topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText, true);
-    topRoyale.addField(`**TOP 5 VOICE 🎙**`, _voiceText, true);
-    topRoyale.setFooter(`GaintPlus Bot | بوت جاينت بلس`, message.guild.iconURL);
-    message.channel.send(topRoyale).catch(e => {
-      if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
-    });
-  }
-});
- 
-client.on('voiceStateUpdate', (u, member) => {
-  let author = member.user.id;
-  let guild = member.guild;
-  if(member.voiceChannel === null) return;
-  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
-  setInterval(() => {
-    if(!member.voiceChannel) return;
-    if(member.selfDeafen) return;
-    vpoints[author].points += rPoints;
-    fs.writeFileSync("./Voice.json", JSON.stringify(vpoints, null, 2));
-  }, 5000); // 5 Secs
-});
-
-client.login(process.env.BOT_TOKEN);
+client.login("NDk5OTgxODA0NzgzMjcxOTM4.DqJTMA.qY9Z8L04KrTENNKbsNsKcx7BT3g");
