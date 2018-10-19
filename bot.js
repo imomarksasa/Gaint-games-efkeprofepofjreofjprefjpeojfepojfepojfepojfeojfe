@@ -1547,11 +1547,11 @@ client.on('guildMemberRemove', member => {
      مبرمج البوت | Developers
 
 
-[ M3a4x.js#2018 | <@202745501345382400> ]
+[ <@202745501345382400> ]
 
-[ Firas#5033 | <@461766920400535552> ]
+[ <@461766920400535552> ]
 
-© 2018 جاينت بلس | GaintPlus
+© 2018 جاينت قايمز | GaintGames
 
 [ We will support fully English language Coming soon ]
 
