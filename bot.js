@@ -1593,7 +1593,7 @@ message.channel.send('**لديك 15 ثانيه لتعرف اسم أي برنام
 msg.channel.sendFile(`${item.image}`).then(() => { // ! clientHema ★#6090
         message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] }) // ! clientHema ★#6090
         .then((collected) => { // ! clientHema ★#6090
-        message.channel.send(`${collected.first().author} ✅ **إجابة صحيحة .**`); // ! clientHema ★#6090
+        message.channel.send(`:x: **لم يقم احد بكتابة اسم الايموجي بالوقت المناسب**`); // ! clientHema ★#6090
         console.log(`[Typing] ${collected.first().author} typed the word.`); // ! clientHema ★#6090
             let userData = points[message.author.id]; // ! clientHema ★#6090
             userData.points++; // ! clientHema ★#6090
