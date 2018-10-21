@@ -1645,7 +1645,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'عواصم')) { 
     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const type = require('./3wasem/3wasem.json'); 
+const type = require('./3wasem.json'); 
 const item = type[Math.floor(Math.random() * type.length)]; 
 const filter = response => { 
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
