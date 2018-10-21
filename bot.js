@@ -1676,64 +1676,6 @@ message.channel.send('**لديك 15 ثاني�� لتوجد العاصمه ا�
 }
 });
 
-
-client.on('message', message => {
-  if (message.author.bot) return;
-
-
-if(!message.channel.guild) return;
-
-if (!points[message.author.id]) points[message.author.id] = {
-	points: 0,
-  wins: 0,
-  loses: 0,
-  };
-if (message.content.startsWith(prefix + 'انمي')) {
-
-const type = require('./anime.json');
-const item = type[Math.floor(Math.random() * type.length)];
-const filter = response => {
-    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
-};
-message.channel.send('**لديك 10  ثواني لتخمن الانمي**').then(msg => {
-
-   const embed = new Discord.RichEmbed()
- .setColor("#36393e")
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
- .setThumbnail(message.author.avatarURL)     
- .addField(`**GaintGames**`,` **${item.type}**`)
- .setFooter(`ستكسب 15 نقطة`)
-
-msg.channel.send(embed).then(() => {
-        message.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] })
-        .then((collected) => {
-		message.channel.send(`**${ collected.first().author} مبروك لقد كسبت 15 نقطة ` , '');
-		console.log(`[Typing] ${collected.first().author} typed the word.`);
-			let userData = points[collected.first().author.id];
-userData.wins += 1 
-userData.points += 15; 
-
-          })
-
-          .catch(collected => {
-points[message.author.id].loses += 1;
-
-            message.channel.send(`:x: ** الاجابه الصحيحه هي : __${item.answers}__حظ اوفر المرة القادمة ! لقد خسرت , انتهى الوقت**` , '');
-			console.log('[Typing] Error: No one type the word.');
-
-		})
-	})
-    })
-points[message.author.id].game += 1; 
-
-
-}
-fs.writeFile("./games/games.json",JSON.stringify(points), function(err){
-    if (err) console.log(err);
-  })
-});
-
-
 const pubg = [
      'PUBG | ما هو اقوي سلاح برائيك ؟',
      'PUBG | اين تجد سلاح الجروزا ؟ Grozza',
