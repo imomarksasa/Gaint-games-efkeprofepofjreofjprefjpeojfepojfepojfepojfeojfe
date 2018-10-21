@@ -1582,7 +1582,7 @@ client.on('message', message => {
 if (!points[message.author.id]) points[message.author.id] = { 
     points: 0, 
   }; 
-if (message.content.startsWith(prefix + 'pl')) { 
+if (message.content.startsWith(prefix + 'برامج')) { 
     if(!message.channel.guild) return message.reply('**:x: هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); 
 const type = require('./PL/pl.json'); 
 const item = type[Math.floor(Math.random() * type.length)]; 
