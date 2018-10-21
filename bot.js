@@ -1636,4 +1636,216 @@ client.on('message', message => {
         }
     });
 
+
+
+client.on('message', message => {
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 50,
+  };
+if (message.content.startsWith(prefix + 'عواصم')) { 
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+
+const type = require('./3wasem/3wasem.json'); 
+const item = type[Math.floor(Math.random() * type.length)]; 
+const filter = response => { 
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**لديك 15 ثاني�� لتوجد العاصمه الصحيحه**').then(msg => {
+    let embed = new Discord.RichEmbed()
+    .setColor('#36393e')
+    .setFooter("عواصم ", 'https://cdn.discordapp.com/avatars/439427357175185408/3eb163b7656922ebc9e90653d50231f1.png?size=2048')
+    .setDescription(`**اكتب عاصمه: ${item.type}**`)
+
+    msg.channel.sendEmbed(embed).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
+        .then((collected) => {
+        message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة الاجابة الصحيحة بالوقت المناسب, **مجموع نقاطك**`);
+
+        console.log(`[Typing] ${collected.first().author} typed the word.`);
+            let won = collected.first().author; 
+            points[won.id].points++;
+          })
+          .catch(collected => { 
+            message.channel.send(`:x: **لا يوجد احد كتب الاجابه الصحيحه**`);
+            console.log(`[Typing] ماحد قال الاجابه `);
+          })
+        })
+    })
+}
+});
+
+
+client.on('message', message => {
+  if (message.author.bot) return;
+
+
+if(!message.channel.guild) return;
+
+if (!points[message.author.id]) points[message.author.id] = {
+	points: 0,
+  wins: 0,
+  loses: 0,
+  };
+if (message.content.startsWith(prefix + 'انمي')) {
+
+const type = require('./anime.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**لديك 10  ثواني لتخمن الانمي**').then(msg => {
+
+   const embed = new Discord.RichEmbed()
+ .setColor("#36393e")
+    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+ .setThumbnail(message.author.avatarURL)     
+ .addField(`**GaintGames**`,` **${item.type}**`)
+ .setFooter(`ستكسب 15 نقطة`)
+
+msg.channel.send(embed).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] })
+        .then((collected) => {
+		message.channel.send(`**${ collected.first().author} مبروك لقد كسبت 15 نقطة ` , '');
+		console.log(`[Typing] ${collected.first().author} typed the word.`);
+			let userData = points[collected.first().author.id];
+userData.wins += 1 
+userData.points += 15; 
+
+          })
+
+          .catch(collected => {
+points[message.author.id].loses += 1;
+
+            message.channel.send(`:x: ** الاجابه الصحيحه هي : __${item.answers}__حظ اوفر المرة القادمة ! لقد خسرت , انتهى الوقت**` , '');
+			console.log('[Typing] Error: No one type the word.');
+
+		})
+	})
+    })
+points[message.author.id].game += 1; 
+
+
+}
+fs.writeFile("./games/games.json",JSON.stringify(points), function(err){
+    if (err) console.log(err);
+  })
+});
+
+
+//points
+client.on('message', message => {
+
+if (!points[message.author.id]) points[message.author.id] = {
+	points: 0,
+  wins: 0,
+  loses: 0,
+  game: 0,
+
+  };
+  if (message.author.bot) return;
+
+
+if(!message.channel.guild) return;
+	let userData = points[message.author.id];
+
+if (message.content.startsWith(prefix + 'point')) {
+let pointss = userData.points
+try {
+                            pointss = shortNumber(pointss);
+                        } catch (error) {
+                            pointss = 0;
+                        }
+                        let wins = userData.wins
+try {
+                            wins = shortNumber(wins);
+                        } catch (error) {
+                            wins = 0;
+                        }
+                        let loses = userData.loses
+try {
+                            loses = shortNumber(loses);
+                        } catch (error) {
+                            loses  = 0;
+                        }
+                         let games = userData.game
+try {
+                            games = shortNumber(games);
+                        } catch (error) {
+                            games  = 0;
+                        }
+	let embed = new Discord.RichEmbed()
+    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+	.setColor('#36393e')
+	.setDescription(`**GaintGames
+
+:white_check_mark: عدد الفوز : ${wins}
+:x: عدد الخسارة: ${loses}
+:label:التقاط: ${pointss}
+:video_game: عدد مرات اللعب: ${games}**` , '');
+	message.channel.sendEmbed(embed)
+  }
+  fs.writeFile("./games/games.json", JSON.stringify(points), (err) => {
+    if (err) console.error(err)
+  })
+
+});
+
+const pubg = [
+     'PUBG | ما هو اقوي سلاح برائيك ؟',
+     'PUBG | اين تجد سلاح الجروزا ؟ Grozza',
+     'PUBG | ماذا تفضل اكثر ام فور ام سكار ؟',
+     'PUBG | ايهما تفضل vss ام Awm',
+     'PUBG | ماذا تفضل اكثر ؟ سولو ام سكواد ؟',
+     'PUBG | كم جيم كسبت في العبه ؟',
+     'PUBG | ما هو اكثر عدد قتلت في مسيرتك بالعبه',
+     'PUBG | اذا انت المركز ال 2 هل سوف تقوم بتمشي علي رجلك ام ستاخذ سياره تحميك ؟',
+     'PUBG | اذا وجدت شخصين يتقاتلان , هل سوف تتقاتل معهم ام تنتظر قليلا حتي يقتل احدهما الاخر ؟',
+     'PUBG | اذا صديقك بالاسكواد يحتاج مساعده هل تساعده ام تتركه ؟',
+     'PUBG | اذا تم عمل لصديقك كونك اوت وامامك لوت كثير جدا سوف تذهب لتساعده ام تاخذ الوت وتدعه يموت ؟',
+     'PUBG | اين تجد ملابس القناصه ؟ ghillie suit ?',
+     'PUBG | ايهما تفضل ؟ الاختباء حتي يتبقي اشخاص قليله ام تذهب لتقتل ولا تختبئ',
+     'PUBG | اين تفضل ان تهبط من الطائره ؟ الاماكن الهادئيا لوت صغير ام الاماكن المزدحمه بالاعبين لاكن لوت كثير',
+     'PUBG | كم عدد المرات التي فزت بها لوحدك سولو ؟',
+     'PUBG | ما هو افضل سلاح تجيد استخدامه ؟',
+     'PUBG | ما هو اندر سلاح قد تجده برائيك ؟',
+     'PUBG | ما هو اندر سلاح جديد قد تجده برائيك ؟',
+     'PUBG | ما هو عدوك في العبه لاق البنق ام لاق الفريمات الاف بي اس ؟',
+     'PUBG | ايهما تفضل العب ؟ فـ المساء ام الصباح ؟',
+     'PUBG | هل تحب ان يكون الجيم ملئ بلاعبين ام لاعبين قليلين ؟',
+     'PUBG | هل الملابس تعبر عن انك محترف ام لا ؟',
+     'PUBG | كم معك من مال ( كوين ) بلعبه ؟',
+     'PUBG | ما هو اكثر شئ تكرهه في العبه ؟',
+     'PUBG | ما هو اكثر شئ تحبه بلعبه ؟',
+     'PUBG | ماذا تفضل شتو قن ( بندقيه ) ام قناصه ؟',
+     'PUBG | ماذا تفضل اكثر ؟ درع لفل 3 متضرر ام درع لفل 2 غير متضرر',
+     'PUBG | تفضل ان تلعب مع صديقك سكواد ام شخص غريب ؟',
+     'PUBG | هل تظن انك افضل شخص في اصدقائك بهذه اللعبه؟',
+     'PUBG | قيم نفسك من 10 كـ احتراف لك بالعبه',
+     'PUBG | هل فزت جيم من قبل بالعبه ؟',
+     'PUBG | هل وصلت للمركز ال 10 ( توب 10 ) قبل هكذا بلعبه ؟',
+     'PUBG | هل قمت بلعب مع صديقك من قبل بلعبه ؟',
+     'PUBG | هل تعلم من اخترع العبه ؟',
+     'PUBG | لو خيروك لعبه ببجي ام فورت نايت ؟',
+     'PUBG | هل يوجد شخص من اصدقاءك محترف اكثر منك ام انت اكثر شخص محترف ما بين اصدقاءك ؟',
+     'PUBG | اذا كنت من فريق مطورين العبه ماذا ستفعل ؟',
+     'PUBG | قيم من 10 مدي حبك للعبه',
+     'PUBG | هل تحب ان تتكلم صوت مع اصدقاءك وانت تلعب معاهم ام لا تحب هذا الامر ؟',
+
+]
+   client.on('message', message => {
+       if (message.author.bot) return;
+ if (message.content.startsWith('#pubg')) {
+     if(!message.channel.guild) return message.reply('** This command only for servers **');
+  var client= new Discord.RichEmbed()
+  .setTitle("لعبه اسئله باتل جرواند")
+  .setColor('#36393e')
+  .setDescription(`${pubg[Math.floor(Math.random() * pubg.length)]}`)
+  .setImage("https://cdn.discordapp.com/attachments/416617103492251658/477741838292484127/pubg-orange-square.png")
+                  .setTimestamp()
+
+   message.channel.sendEmbed(client);
+   message.react("??")
+ }
+});
+
 client.login(process.env.BOT_TOKEN);
