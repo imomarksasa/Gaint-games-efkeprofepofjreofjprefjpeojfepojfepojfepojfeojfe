@@ -1576,35 +1576,61 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
 
 
 
-let points = JSON.parse(fs.readFileSync('./PL/plPTS.json', 'utf8')); // ! EpicHema ★#6090
-client.on('message', message => { // ! clientHema ★#6090
-if (!points[message.author.id]) points[message.author.id] = { // ! clientHema ★#6090
-    points: 0, // ! clientHema ★#6090
-  }; // ! clientHema ★#6090
-if (message.content.startsWith(prefix + 'برامج')) { // ! clientHema ★#6090
-    if(!message.channel.guild) return message.reply('**:x: هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); // ! clientHema ★#6090
-const type = require('./PL/pl.json'); // ! clientHema ★#6090
-const item = type[Math.floor(Math.random() * type.length)]; // ! clientHema ★#6090
-const filter = response => { // ! clientHema ★#6090
-    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase()); // ! clientHema ★#6090
-}; // ! clientHema ★#6090
-message.channel.send('**لديك 15 ثانيه لتعرف اسم أي برنامج .**').then(msg => { // ! clientHema ★#6090
- // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090 // ! clientHema ★#6090
-msg.channel.sendFile(`${item.image}`).then(() => { // ! clientHema ★#6090
-        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] }) // ! clientHema ★#6090
-        .then((collected) => { // ! clientHema ★#6090
-        message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة اسم البرنامج بالوقت المناسب، **مجموع نقاطك**`); // ! clientHema ★#6090
-        console.log(`[Typing] ${collected.first().author} typed the word.`); // ! clientHema ★#6090
-            let userData = points[message.author.id]; // ! clientHema ★#6090
-            userData.points++; // ! clientHema ★#6090
-          }) // ! clientHema ★#6090
-          .catch(collected => { // ! clientHema ★#6090
-            message.channel.send(`**تم الانتهاء من الوقت  حظ اوفر المره القادمه :stopwatch: الاجابه هي : __${item.answers}__ **`); // ! clientHema ★#6090
-            console.log('[Typing] Error: No one type the word.'); // ! clientHema ★#6090
-          }) // ! clientHema ★#6090
-        }) // ! clientHema ★#6090
-    }) // ! clientHema ★#6090
-} // ! clientHema ★#6090
-}); // ! clientHema ★#6090
+
+let points = JSON.parse(fs.readFileSync('./PL/plPTS.json', 'utf8')); 
+client.on('message', message => { 
+if (!points[message.author.id]) points[message.author.id] = { 
+    points: 0, 
+  }; 
+if (message.content.startsWith(prefix + 'pl')) { 
+    if(!message.channel.guild) return message.reply('**:x: هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); 
+const type = require('./PL/pl.json'); 
+const item = type[Math.floor(Math.random() * type.length)]; 
+const filter = response => { 
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase()); 
+}; 
+message.channel.send('**لديك 15 ثانيه لتعرف اسم أي برنامج .**').then(msg => { 
+    
+msg.channel.sendFile(`${item.image}`).then(() => { 
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] }) 
+        .then((collected) => { 
+        message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة اسم البرنامج بالوقت المناسب, **مجموع نقاطك**`);
+        console.log(`[Typing] ${collected.first().author} typed the word.`); 
+            let userData = points[message.author.id]; 
+            userData.points++; 
+          }) 
+          .catch(collected => { 
+            message.channel.send(`**تم الانتهاء من الوقت  حظ اوفر المره القادمه :stopwatch: الاجابه هي : __${item.answers}__ **`); 
+            console.log('[Typing] Error: No one type the word.'); 
+          }) 
+        }) 
+    }) 
+} 
+}); 
+    
+client.on('message', message => { 
+if (message.content.startsWith(prefix + 'points')) { 
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); 
+    let userData = points[message.author.id]; 
+    let embed = new Discord.RichEmbed() 
+    .setAuthor(`${message.author.tag}`, message.author.avatarURL) 
+    .setColor('#000000') 
+    .setDescription(`نقاطك: \`${userData.points}\``) 
+    message.channel.sendEmbed(embed) 
+  }   
+  fs.writeFile("./PL/plPTS.json", JSON.stringify(points), (err) => { 
+    if (err) console.error(err) 
+  }) 
+}); 
+   
+
+client.on('message', message => {
+        if(message.content.startsWith(prefix + 'profile')) {
+            let args = message.content.split(' ').slice(1).join(' ');
+            if (!args) return message.channel.send("**Please provide a Minecraft username. ❌**");
+            var link = (`https://blocksmc.com/${args}`);
+            message.channel.send(link);
+        }
+    });
 
 client.login(process.env.BOT_TOKEN);
