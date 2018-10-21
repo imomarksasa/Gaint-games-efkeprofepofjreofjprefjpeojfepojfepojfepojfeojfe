@@ -1619,7 +1619,7 @@ if (message.content.startsWith(prefix + 'points')) {
     let userData = points[message.author.id]; 
     let embed = new Discord.RichEmbed() 
     .setAuthor(`${message.author.tag}`, message.author.avatarURL) 
-    .setColor('#000000') 
+    .setColor('#36393e') 
     .setDescription(`نقاطك: \`${userData.points}\``) 
     message.channel.sendEmbed(embed) 
   }   
@@ -1728,69 +1728,11 @@ points[message.author.id].game += 1;
 
 
 }
-fs.writeFile("./point.json",JSON.stringify(points), function(err){
+fs.writeFile("./games/games.json",JSON.stringify(points), function(err){
     if (err) console.log(err);
   })
 });
 
-
-//points
-client.on('message', message => {
-
-if (!points[message.author.id]) points[message.author.id] = {
-	points: 0,
-  wins: 0,
-  loses: 0,
-  game: 0,
-
-  };
-  if (message.author.bot) return;
-
-
-if(!message.channel.guild) return;
-	let userData = points[message.author.id];
-
-if (message.content.startsWith(prefix + 'pointddsds')) {
-let pointss = userData.points
-try {
-                            pointss = shortNumber(pointss);
-                        } catch (error) {
-                            pointss = 0;
-                        }
-                        let wins = userData.wins
-try {
-                            wins = shortNumber(wins);
-                        } catch (error) {
-                            wins = 0;
-                        }
-                        let loses = userData.loses
-try {
-                            loses = shortNumber(loses);
-                        } catch (error) {
-                            loses  = 0;
-                        }
-                         let games = userData.game
-try {
-                            games = shortNumber(games);
-                        } catch (error) {
-                            games  = 0;
-                        }
-	let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
-	.setColor('#36393e')
-	.setDescription(`**GaintGames
-
-:white_check_mark: عدد الفوز : ${wins}
-:x: عدد الخسارة: ${loses}
-:label:التقاط: ${pointss}
-:video_game: عدد مرات اللعب: ${games}**` , '');
-	message.channel.sendEmbed(embed)
-  }
-  fs.writeFile("./games/games.json", JSON.stringify(points), (err) => {
-    if (err) console.error(err)
-  })
-
-});
 
 const pubg = [
      'PUBG | ما هو اقوي سلاح برائيك ؟',
