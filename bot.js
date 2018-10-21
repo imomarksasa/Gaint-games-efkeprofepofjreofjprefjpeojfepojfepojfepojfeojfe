@@ -1655,7 +1655,7 @@ const filter = response => {
 message.channel.send('**لديك 15 ثاني�� لتوجد العاصمه الصحيحه**').then(msg => {
     let embed = new Discord.RichEmbed()
     .setColor('#36393e')
-    .setFooter("عواصم ", 'https://cdn.discordapp.com/avatars/439427357175185408/3eb163b7656922ebc9e90653d50231f1.png?size=2048')
+    .setFooter("عواصم ", 'https://cdn.discordapp.com/attachments/500363022787805186/503550057774317579/8a1849976873db1d_1.png')
     .setDescription(`**اكتب عاصمه: ${item.type}**`)
 
     msg.channel.sendEmbed(embed).then(() => {
