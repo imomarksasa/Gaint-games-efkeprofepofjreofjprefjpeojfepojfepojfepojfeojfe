@@ -1521,7 +1521,7 @@ client.on('guildMemberRemove', member => {
 
 #اسرع كتابة | #fasttyping
 
-#عواصم | #captials ( قريبا | Comming Soon )
+#عواصم | #captials
 
 #لغز | #puzzle
 
@@ -1538,6 +1538,8 @@ client.on('guildMemberRemove', member => {
 #احسب | #maths
 
 #انمي | #anime
+
+#pubg | ببجي
 
   سيرفر الرئيسي | Offical Server [ <:globe_with_meridians:409259794554290177> ]
 
@@ -1834,7 +1836,7 @@ const pubg = [
 ]
    client.on('message', message => {
        if (message.author.bot) return;
- if (message.content.startsWith('#pubg')) {
+ if (message.content.startsWith('#ببجي')) {
      if(!message.channel.guild) return message.reply('** This command only for servers **');
   var client= new Discord.RichEmbed()
   .setTitle("لعبه اسئله باتل جرواند")
