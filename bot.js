@@ -1728,7 +1728,7 @@ points[message.author.id].game += 1;
 
 
 }
-fs.writeFile("./games/games.json",JSON.stringify(points), function(err){
+fs.writeFile("./point.json",JSON.stringify(points), function(err){
     if (err) console.log(err);
   })
 });
@@ -1750,7 +1750,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if(!message.channel.guild) return;
 	let userData = points[message.author.id];
 
-if (message.content.startsWith(prefix + 'point')) {
+if (message.content.startsWith(prefix + 'pointddsds')) {
 let pointss = userData.points
 try {
                             pointss = shortNumber(pointss);
