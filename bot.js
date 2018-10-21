@@ -1628,7 +1628,7 @@ client.on('message', message => {
         if(message.content.startsWith(prefix + 'profile')) {
             let args = message.content.split(' ').slice(1).join(' ');
             if (!args) return message.channel.send("**Please provide a Minecraft username. ❌**");
-            var link = (`https://blocksmc.com/${args}`);
+            var link = (`https://blocksmc.com/player/${args}`);
             message.channel.send(link);
         }
     });
