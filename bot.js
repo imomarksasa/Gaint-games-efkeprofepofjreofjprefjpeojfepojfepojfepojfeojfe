@@ -10,7 +10,21 @@ const path = require('path');
 const moment = require('moment');
 const yt = require('ytdl-core');
 const request = require('request');
-const devs = ['202745501345382400', '461766920400535552', '202745501345382400', '461766920400535552', '202745501345382400', '202745501345382400'];
+const devs = ['321476121956974595'];
+
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log('Pinging');
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+//
+
 
 var cooldownGames = new Set();
 var cooldownSurvival = new Set();
@@ -934,6 +948,154 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		})
 	}
 	if(command == prefix + 'فكك') {
+   
+     const w = ['ID1.png'];
+const Canvas = require('canvas');
+    
+   
+    //if(userInfo.xp > 100) {
+    
+             let mention = message.mentions.users.first() || message.author;
+       let mentionn = message.mentions.users.first();
+             let Image = Canvas.Image,
+                 canvas = new Canvas(802, 404),
+                 ctx = canvas.getContext('2d');
+             ctx.patternQuality = 'bilinear';
+             ctx.filter = 'bilinear';
+             ctx.antialias = 'subpixel';
+             ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+             ctx.shadowOffsetY = 2;
+             ctx.shadowBlur = 2;
+             fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+                 if (err) return console.log(err);
+                 let BG = Canvas.Image;
+                 let ground = new Image;
+                 ground.src = Background;
+                 ctx.drawImage(ground, 0, 0, 802, 404);
+    
+     })
+                                let user = message.mentions.users.first();
+          var men = message.mentions.users.first();
+             var heg;
+             if(men) {
+                 heg = men
+             } else {
+                 heg = message.author
+             }
+           var mentionned = message.mentions.members.first();
+              var h;
+             if(mentionned) {
+                 h = mentionned
+             } else {
+                 h = message.member
+             }
+             var ment = message.mentions.users.first();
+             var getvalueof;
+             if(ment) {
+               getvalueof = ment;
+             } else {
+               getvalueof = message.author;
+             }//ما خصك ,_,
+                                           let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
+                                             jimp.read(url, (err, ava) => {
+                                                 if (err) return console.log(err);
+                                                 ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                                                     if (err) return console.log(err);
+                            
+                                                             let Avatar = Canvas.Image;
+                                                             let ava = new Avatar;
+                                                             ava.src = buf;
+                                                             ctx.beginPath();
+                                                           ctx.drawImage(ava, 315, 3, 160, 169);
+                                                     ctx.font = '35px Arial Bold';
+                                                     ctx.fontSize = '40px';
+                                                     ctx.fillStyle = "#dadada";
+                                                     ctx.textAlign = "center";
+                                                    
+                            
+                                                     ctx.font = '30px Arial Bold';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#fffff";
+                                                                             ctx.fillText(`${getvalueof.username}`,400, 210);
+                                                                            
+                                                                        
+                                                          moment.locale('ar-ly');        
+                                            //${credits[mention.id].credits}
+                                                   
+                                                    ctx.font = '30px Arial';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#ffffff";
+                                                                             ctx.fillText(``+"/100",95, 220);
+                                                   
+                                                   
+                                                   
+                                                                                                   
+                                                        ctx.font = '30px Arial';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#ffffff";
+                                                                             ctx.fillText(``,660, 130);
+                                                   
+                                                                                                           ctx.font = '30px Arial';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#ffffff";
+                                                                             ctx.fillText(`$`,660, 210);
+                                                              
+                                            
+                                                                    ctx.font = '30px Arial';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#ffffff";
+                                                                             ctx.fillText(`${moment(h.joinedAt).fromNow()}`,133350, 305);
+                                                              
+                                                      
+                                                              
+                                                                                                     ctx.font = '30px Arial';
+                                                     ctx.fontSize = '30px';
+                                                     ctx.fillStyle = "#ffffff";
+                                                                 ctx.fillText(`${moment(heg.createdTimestamp).fromNow()}`,150999, 170); 
+                            
+                                                       let status;
+     if (getvalueof.presence.status === 'online') {
+         status = 'Online';
+     } else if (getvalueof.presence.status === 'dnd') {
+         status = 'dnd';
+     } else if (getvalueof.presence.status === 'idle') {
+         status = 'idle';
+     } else if (getvalueof.presence.status === 'offline') {
+         status = 'offline';
+     }
+     
+     
+                                          ctx.cont = '35px Arial';
+                                          ctx.fontSize = '30px';
+                                          ctx.filleStyle = '#ffffff'
+                                          ctx.fillText(`${status}`,655333,305)
+                  
+                                                                   ctx.font = 'regular 30px Cairo';
+                                                                   ctx.fontSize = '30px';
+                                                                   ctx.fillStyle = '#ffffff'
+                                                         ctx.fillText(`${h.presence.game === null ? "" : h.presence.game.name}`,390333,390);
+                            
+                               ctx.font = '35px Arial';
+                                                                   ctx.fontSize = '30px';
+                                                                   ctx.fillStyle = '#ffffff'
+                                                                   ctx.fillText(`#${heg.discriminator}`,390333,260)
+                            
+                                 ctx.beginPath();
+                                 ctx.stroke();
+                               message.channel.sendFile(canvas.toBuffer());
+                            
+                            
+                          
+                            
+                             })
+                            
+                             })
+ 
+    
+
+
+
+    
 		let type = require('./qfkk.json');
 		let item = type[Math.floor(Math.random() * type.length)];
 		let filter = response => {
@@ -946,9 +1108,24 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		var flagPoints = games[message.author.id].flag;
 		var mathPoints = games[message.author.id].math;
 		var allPoints = lazPoints + fkkPoints + fastPoints + emojiPoints + flagPoints + mathPoints;
-		
-		if(cooldownGames.has(message.author.id)) return message.reply('**جاوب على السؤال اولا**');
-		cooldownGames.add(message.author.id);
+        const mm = message.mentions.members.first() || message.member;
+		    let qFkk1 = new Discord.RichEmbed()
+		.setTitle('')
+     .setAuthor(mm.user.tag, mm.user.avatarURL)    
+		.setDescription(`${message.author} **لقد قمت بتفكيك النص**
+
+◈ **نقاطك** : \`${allPoints + 1}نقطة\`
+
+◈ **نقاطك في لعبة فكك** : \`${fkkPoints + 1}نقطة\``)//${fkkPoints + 1}
+		.setThumbnail(message.author.avatarURL)
+		.setColor('GREEN')
+		.setTimestamp()
+        
+		.setFooter(`© SkyBot`)
+    
+    
+		if(cooldownGames.has(message.user)) return message.reply('**:clock: | هناك جوله يجب عليك الأنتظار**');
+		cooldownGames.add(message.user);
 		
 		let qFkk = new Discord.RichEmbed()
 		.setTitle('')
@@ -962,16 +1139,16 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
 			.then((collected) => {
 				let won = collected.first().author;
-				message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بتفكيك الكلمة بالوقت المناسب، **مجموع نقاطك**`);
+				message.channel.send(qFkk1)
 				games[won.id].fkk++;
-				cooldownGames.delete(message.author.id);
+				cooldownGames.delete(message.user);
 				fs.writeFile("./games/games.json", JSON.stringify(games), (err) => {
 					if(err) console.error(err)
 				})
 			})
 			.catch(collected => {
-				message.channel.send(`:x: **لم يقم احد بتفكيك الكلمة بالوقت المناسب**`);
-				cooldownGames.delete(message.author.id);
+					message.channel.send(`:x: **لم يقم احد بتفكيك الكلمة في الوقت المناسب**`);
+				cooldownGames.delete(message.user);
 			})
 		})
 	}
@@ -989,8 +1166,8 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		var mathPoints = games[message.author.id].math;
 		var allPoints = lazPoints + fkkPoints + fastPoints + emojiPoints + flagPoints + mathPoints;
 		
-		if(cooldownGames.has(message.author.id)) return message.reply('**جاوب على السؤال اولا**');
-		cooldownGames.add(message.author.id);
+		if(cooldownGames.has(message.user)) return message.reply('**:clock: | هناك جوله يجب عليك الأنتظار**');
+		cooldownGames.add(message.user);
 		
 		let qFast = new Discord.RichEmbed()
 		.setTitle('')
@@ -1006,14 +1183,14 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 				let won = collected.first().author;
 				message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة الجملة بالوقت المناسب، **مجموع نقاطك**`);
 				games[won.id].fast++;
-				cooldownGames.delete(message.author.id);
+				cooldownGames.delete(message.user);
 				fs.writeFile("./games/games.json", JSON.stringify(games), (err) => {
 					if(err) console.error(err)
 				})
 			})
 			.catch(collected => {
-				message.channel.send(`:x: **لم يقم احد بكتابة الجملة بالوقت المناسب**`);
-				cooldownGames.delete(message.author.id);
+				message.channel.send(`:x: **لم يقم احد بكتابة الكلمة في الوقت المناسب**`);
+				cooldownGames.delete(message.user);
 			})
 		})
 	}
@@ -1031,8 +1208,8 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		var mathPoints = games[message.author.id].math;
 		var allPoints = lazPoints + fkkPoints + fastPoints + emojiPoints + flagPoints + mathPoints;
 		
-		if(cooldownGames.has(message.author.id)) return message.reply('**جاوب على السؤال اولا**');
-		cooldownGames.add(message.author.id);
+		if(cooldownGames.has(message.user)) return message.reply('**:clock: | هناك جوله يجب عليك الأنتظار**');
+		cooldownGames.add(message.user);
 		
 		let qEmoji = new Discord.RichEmbed()
 		.setTitle('')
@@ -1049,14 +1226,14 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 				let won = collected.first().author;
 				message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة اسم الايموجي بالوقت المناسب، **مجموع نقاطك**`);
 				games[won.id].emoji++;
-				cooldownGames.delete(message.author.id);
+				cooldownGames.delete(message.user);
 				fs.writeFile("./games/games.json", JSON.stringify(games), (err) => {
 					if(err) console.error(err)
 				})
 			})
 			.catch(collected => {
 				message.channel.send(`:x: **لم يقم احد بكتابة اسم الايموجي بالوقت المناسب**`);
-				cooldownGames.delete(message.author.id);
+				cooldownGames.delete(message.user);
 			})
 		})
 	}
@@ -1145,7 +1322,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 			})
 		})
 	}
-	if(command == prefix + 'نقاطي') {
+	if(command == prefix + 'نقاط') {
 		if(!games[message.author.id]) games[message.author.id] = {
 			laz: 0,
 			fkk: 0,
@@ -1187,7 +1364,7 @@ message.reply('**عندك اعدادات الخصوصيه لا يمكنني ان
 		}
 		
 		let pointsPlayer = new Discord.RichEmbed()
-		.setThumbnail(client.user.avatarURL)
+		.setThumbnail(playerAvatar)
 		.setColor('#36393e')
 		.setTitle(`**\n:crown: [ مجموع النقاط [ ${allPoints}\n**`)
 		.addField('**نقاط لعبة الالغاز:**', ` ↝ [ **${lazPoints}** ] ↜`, true)
@@ -1492,12 +1669,7 @@ client.on('guildMemberRemove', member => {
          .setURL('')
          .setDescription(`
  **
-╭━━━╮╱╱╱╱╱╱╭╮╭━━━╮
-┃╭━╮┃╱╱╱╱╱╭╯╰┫╭━╮┃
-┃┃╱╰╋━━┳┳━╋╮╭┫┃╱╰╋━━┳╮╭┳━━┳━━╮
-┃┃╭━┫╭╮┣┫╭╮┫┃┃┃╭━┫╭╮┃╰╯┃┃━┫━━┫
-┃╰┻━┃╭╮┃┃┃┃┃╰┫╰┻━┃╭╮┃┃┃┃┃━╋━━┃
-╰━━━┻╯╰┻┻╯╰┻━┻━━━┻╯╰┻┻┻┻━━┻━━╯
+
 
 
 
@@ -1505,7 +1677,7 @@ client.on('guildMemberRemove', member => {
 
     البرفكس الخاص بالبوت [ # ] Bot Prefix
 
-    لعرض النقاط الخاصة بك [ #points - #نقاطي ] To display your points
+    لعرض النقاط الخاصة بك [ #points - #نقاط ] To display your points
 
     قائمة المتصدرين للسيرفر [ #top - #توب ] Guild Leaderboard    ( قريبا | Comming Soon )
 
@@ -1549,14 +1721,9 @@ client.on('guildMemberRemove', member => {
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 
-     مبرمج البوت | Developers
 
 
-[ <@202745501345382400> ]
-
-[ <@461766920400535552> ]
-
-© 2018 جاينت قايمز | GaintGames
+© 2019 Sky Bot
 
 [ We will support fully English language Coming soon ]
 
@@ -1582,51 +1749,9 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
 
 
 
-let points = JSON.parse(fs.readFileSync('./PL/plPTS.json', 'utf8')); 
-client.on('message', message => { 
-if (!points[message.author.id]) points[message.author.id] = { 
-    points: 0, 
-  }; 
-if (message.content.startsWith(prefix + 'برامج')) { 
-    if(!message.channel.guild) return message.reply('**:x: هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); 
-const type = require('./PL/pl.json'); 
-const item = type[Math.floor(Math.random() * type.length)]; 
-const filter = response => { 
-    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase()); 
-}; 
-message.channel.send('**لديك 15 ثانيه لتعرف اسم أي برنامج .**').then(msg => { 
+
     
-msg.channel.sendFile(`${item.image}`).then(() => { 
-        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] }) 
-        .then((collected) => { 
-        message.channel.send(`${collected.first().author} ✅ \`\`${allPoints + 1}\`\` لقد قمت بكتابة اسم البرنامج بالوقت المناسب, **مجموع نقاطك**`);
-        console.log(`[Typing] ${collected.first().author} typed the word.`); 
-            let userData = points[message.author.id]; 
-            userData.points++; 
-          }) 
-          .catch(collected => { 
-            message.channel.send(`**تم الانتهاء من الوقت  حظ اوفر المره القادمه :stopwatch: الاجابه هي : __${item.answers}__ **`); 
-            console.log('[Typing] Error: No one type the word.'); 
-          }) 
-        }) 
-    }) 
-} 
-}); 
-    
-client.on('message', message => { 
-if (message.content.startsWith(prefix + 'points')) { 
-    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000)); 
-    let userData = points[message.author.id]; 
-    let embed = new Discord.RichEmbed() 
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL) 
-    .setColor('#36393e') 
-    .setDescription(`نقاطك: \`${userData.points}\``) 
-    message.channel.sendEmbed(embed) 
-  }   
-  fs.writeFile("./PL/plPTS.json", JSON.stringify(points), (err) => { 
-    if (err) console.error(err) 
-  }) 
-}); 
+
    
 
 client.on('message', message => {
@@ -1639,4 +1764,4 @@ client.on('message', message => {
     });
 
 
-client.login(process.env.BOT_TOKEN);
+client.login("NjAzMzMwNDU3MjA3MDQ2MTY1.XUN9Cg.p0mD_OsKgRytdtN09LFmNyPY7tY");
